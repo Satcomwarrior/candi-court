@@ -1,0 +1,146 @@
+# COMPLETE FINANCIAL EXTRACTION AUTOMATION
+# Extract actual dollar amounts from all bank statements
+Write-Host "🚀 STARTING COMPLETE FINANCIAL ANALYSIS..." -ForegroundColor Red
+
+$OutputDir = "C:\Users\Muddm\Downloads\COMPLETE_FINANCIAL_ANALYSIS"
+New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
+
+# Get all account statement files
+Write-Host "📊 FINDING ALL ACCOUNT STATEMENTS..." -ForegroundColor Green
+
+$AllStatements = Get-ChildItem "C:\Users\Muddm\Downloads\AccountStatement*.pdf" | 
+                 Sort-Object Name
+
+Write-Host "Found $($AllStatements.Count) account statement files" -ForegroundColor Cyan
+
+# Initialize totals
+$TotalExtracted = 0
+$ProcessedFiles = @()
+$AllTransactions = @()
+
+Write-Host "💰 EXTRACTING FINANCIAL DATA..." -ForegroundColor Yellow
+
+foreach ($File in $AllStatements) {
+    Write-Host "Processing: $($File.Name)" -ForegroundColor Gray
+    
+    try {
+        # Try to read PDF content
+        $Content = Get-Content $File.FullName -Raw -ErrorAction SilentlyContinue
+        
+        if ($Content) {
+            # Extract all dollar amounts using regex
+            $Amounts = [regex]::Matches($Content, '\$[0-9,]+\.[0-9]{2}') | ForEach-Object {
+                $CleanAmount = $_.Value -replace '[\$,]', ''
+                if ([double]::TryParse($CleanAmount, [ref]$null)) {
+                    [double]$CleanAmount
+                }
+            }
+            
+            if ($Amounts.Count -gt 0) {
+                $FileTotal = ($Amounts | Measure-Object -Sum).Sum
+                $TotalExtracted += $FileTotal
+                
+                $ProcessedFiles += [PSCustomObject]@{
+                    FileName = $File.Name
+                    TransactionCount = $Amounts.Count
+                    FileTotal = $FileTotal
+                    LargestAmount = ($Amounts | Measure-Object -Maximum).Maximum
+                    Date = $File.LastWriteTime
+                }
+                
+                # Store individual amounts
+                foreach ($Amount in $Amounts) {
+                    $AllTransactions += [PSCustomObject]@{
+                        FileName = $File.Name
+                        Amount = $Amount
+                        Date = $File.LastWriteTime
+                    }
+                }
+                
+                Write-Host "  Extracted: $($Amounts.Count) amounts totaling $($FileTotal.ToString('C'))" -ForegroundColor Green
+            }
+        }
+    }
+    catch {
+        Write-Host "  Error processing: $($File.Name)" -ForegroundColor Red
+    }
+}
+
+# Export detailed results
+$ProcessedFiles | Export-Csv "$OutputDir\PROCESSED_FILES_SUMMARY.csv" -NoTypeInformation
+$AllTransactions | Export-Csv "$OutputDir\ALL_TRANSACTIONS.csv" -NoTypeInformation
+
+# Analysis by year
+$YearlyTotals = $ProcessedFiles | Group-Object {$_.Date.Year} | ForEach-Object {
+    [PSCustomObject]@{
+        Year = $_.Name
+        FileCount = $_.Count
+        TotalAmount = ($_.Group | Measure-Object -Property FileTotal -Sum).Sum
+    }
+}
+
+$YearlyTotals | Export-Csv "$OutputDir\YEARLY_TOTALS.csv" -NoTypeInformation
+
+# Large transactions analysis
+$LargeTransactions = $AllTransactions | Where-Object {$_.Amount -gt 1000} | Sort-Object Amount -Descending
+$LargeTransactions | Export-Csv "$OutputDir\LARGE_TRANSACTIONS.csv" -NoTypeInformation
+
+# Generate comprehensive report
+$Report = @"
+COMPLETE FINANCIAL EXTRACTION REPORT
+===================================
+Generated: $(Get-Date)
+Files Processed: $($AllStatements.Count)
+Successful Extractions: $($ProcessedFiles.Count)
+
+TOTAL EXTRACTED AMOUNT: $($TotalExtracted.ToString('C'))
+
+BREAKDOWN BY YEAR:
+$($YearlyTotals | ForEach-Object { "$($_.Year): $($_.TotalAmount.ToString('C')) ($($_.FileCount) files)" } | Out-String)
+
+TOP 10 LARGEST INDIVIDUAL TRANSACTIONS:
+$($LargeTransactions | Select-Object -First 10 | ForEach-Object { "$($_.Amount.ToString('C')) - $($_.FileName)" } | Out-String)
+
+TOP 10 FILES BY TOTAL AMOUNT:
+$($ProcessedFiles | Sort-Object FileTotal -Descending | Select-Object -First 10 | ForEach-Object { "$($_.FileTotal.ToString('C')) - $($_.FileName) ($($_.TransactionCount) transactions)" } | Out-String)
+
+SUMMARY:
+- Previously verified (Account 3621082978): $123,621.19
+- New extraction total: $($TotalExtracted.ToString('C'))
+- COMBINED TOTAL: $(($TotalExtracted + 123621.19).ToString('C'))
+
+FILES CREATED:
+1. PROCESSED_FILES_SUMMARY.csv - Summary by file
+2. ALL_TRANSACTIONS.csv - Every transaction found
+3. YEARLY_TOTALS.csv - Totals by year
+4. LARGE_TRANSACTIONS.csv - Transactions over $1,000
+5. FINANCIAL_ANALYSIS_REPORT.txt - This report
+
+NEXT STEPS:
+1. Review large transactions for housing/living expenses
+2. Identify recurring payments (mortgage, utilities)
+3. Separate business vs. personal expenses
+4. Calculate total relationship contributions
+"@
+
+$Report | Out-File "$OutputDir\FINANCIAL_ANALYSIS_REPORT.txt"
+
+# Display results
+Write-Host "========================================" -ForegroundColor Yellow
+Write-Host "🏆 COMPLETE FINANCIAL ANALYSIS FINISHED!" -ForegroundColor Green
+Write-Host "========================================" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "📊 FILES PROCESSED: $($AllStatements.Count)" -ForegroundColor Cyan
+Write-Host "✅ SUCCESSFUL EXTRACTIONS: $($ProcessedFiles.Count)" -ForegroundColor Green
+Write-Host "💰 TOTAL EXTRACTED: $($TotalExtracted.ToString('C'))" -ForegroundColor Yellow
+Write-Host "🎯 COMBINED WITH PREVIOUS: $(($TotalExtracted + 123621.19).ToString('C'))" -ForegroundColor Red
+Write-Host ""
+Write-Host "📁 RESULTS SAVED TO: $OutputDir" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "📈 YEARLY BREAKDOWN:" -ForegroundColor Magenta
+foreach ($Year in $YearlyTotals) {
+    Write-Host "   $($Year.Year): $($Year.TotalAmount.ToString('C')) ($($Year.FileCount) files)" -ForegroundColor White
+}
+
+# Open results
+explorer $OutputDir

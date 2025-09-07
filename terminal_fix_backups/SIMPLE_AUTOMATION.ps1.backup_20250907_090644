@@ -1,0 +1,104 @@
+# SIMPLE FINANCIAL AUTOMATION SCRIPT
+# William Miller - Financial Evidence Discovery
+# Created: September 7, 2025
+
+Write-Host "🚀 STARTING FINANCIAL AUTOMATION..." -ForegroundColor Yellow
+
+# Create output directory
+$OutputDir = "C:\Users\Muddm\Downloads\AUTOMATED_RESULTS"
+New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
+
+# Define drives to search
+$Drives = @("C:", "D:", "E:")
+$AllFiles = @()
+
+Write-Host "📊 SEARCHING FOR FINANCIAL FILES..." -ForegroundColor Green
+
+# Search for financial files
+foreach ($Drive in $Drives) {
+    if (Test-Path $Drive) {
+        Write-Host "Scanning drive $Drive..." -ForegroundColor Cyan
+        
+        try {
+            $Files = Get-ChildItem -Path "$Drive\" -Recurse -Include "*.pdf", "*.xls*", "*.csv" -ErrorAction SilentlyContinue |
+                     Where-Object {
+                         $_.Name -like "*account*" -or 
+                         $_.Name -like "*statement*" -or 
+                         $_.Name -like "*3621082*" -or
+                         $_.Name -like "*paypal*" -or
+                         $_.Name -like "*financial*"
+                     } |
+                     Select-Object FullName, Name, Length, LastWriteTime, @{Name="Drive";Expression={$Drive}}
+            
+            $AllFiles += $Files
+            Write-Host "  Found $($Files.Count) files on drive $Drive" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "  Error scanning drive $Drive" -ForegroundColor Red
+        }
+    }
+}
+
+# Export results
+$AllFiles | Export-Csv "$OutputDir\ALL_FINANCIAL_FILES.csv" -NoTypeInformation
+
+Write-Host "🎥 SEARCHING FOR MEDIA FILES..." -ForegroundColor Blue
+
+# Search for media files
+$MediaFiles = @()
+foreach ($Drive in $Drives) {
+    if (Test-Path $Drive) {
+        try {
+            $Files = Get-ChildItem -Path "$Drive\" -Recurse -Include "*.mp4", "*.m4a", "*.wav", "*.mp3" -ErrorAction SilentlyContinue |
+                     Where-Object {$_.Length -gt 1MB} |
+                     Select-Object FullName, Name, Length, LastWriteTime, @{Name="Drive";Expression={$Drive}}
+            
+            $MediaFiles += $Files
+        }
+        catch {
+            # Continue on error
+        }
+    }
+}
+
+$MediaFiles | Export-Csv "$OutputDir\ALL_MEDIA_FILES.csv" -NoTypeInformation
+
+# Create summary report
+$SummaryReport = @"
+AUTOMATED FINANCIAL DISCOVERY SUMMARY
+====================================
+Generated: $(Get-Date)
+
+FINANCIAL FILES FOUND: $($AllFiles.Count)
+MEDIA FILES FOUND: $($MediaFiles.Count)
+TOTAL FILES DISCOVERED: $($AllFiles.Count + $MediaFiles.Count)
+
+TOP 10 LARGEST FINANCIAL FILES:
+$($AllFiles | Sort-Object Length -Descending | Select-Object -First 10 | ForEach-Object { "- $($_.Name) ($([math]::Round($_.Length/1MB, 2)) MB)" } | Out-String)
+
+CRITICAL AUDIO FILES:
+$($MediaFiles | Where-Object {$_.Name -like "*.m4a"} | ForEach-Object { "- $($_.Name) ($([math]::Round($_.Length/1MB, 2)) MB)" } | Out-String)
+
+NEXT STEPS:
+# 1. Review ALL_FINANCIAL_FILES.csv for bank statements
+# 2. Review ALL_MEDIA_FILES.csv for audio evidence
+# 3. Call Rev.com for transcription: 1-888-369-0701
+# 4. Analyze largest financial files first
+
+RESULTS SAVED TO: $OutputDir
+"@
+
+$SummaryReport | Out-File "$OutputDir\DISCOVERY_SUMMARY.txt" -Encoding UTF8
+
+Write-Host "========================================" -ForegroundColor Yellow
+Write-Host "🏆 AUTOMATION COMPLETED!" -ForegroundColor Green
+Write-Host "========================================" -ForegroundColor Yellow
+Write-Host "📊 Financial Files: $($AllFiles.Count)" -ForegroundColor Green
+Write-Host "🎥 Media Files: $($MediaFiles.Count)" -ForegroundColor Blue
+Write-Host "📁 Results: $OutputDir" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "📞 CALL NOW: Rev.com 1-888-369-0701" -ForegroundColor Red
+
+# Open results folder
+explorer $OutputDir
+
