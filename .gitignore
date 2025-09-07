@@ -41,3 +41,10 @@ Phone Link/
 *.css
 *.code-workspace
 .vscode/
+
+# Exclude files too large for GitHub
+iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6714.MOV
+iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6715.MOV
+iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6721.MOV
+iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6725.MOV
+Unpacking_Irregularities__Washington_State_s_Legal_&_Regulatory_Systems_Under_the_Microscope.m4a
