@@ -1,4 +1,13 @@
+import os
+import glob
 import sys
+from dotenv import load_dotenv
+from anthropic import Anthropic
+import PyPDF2
+import spacy
+from textblob import TextBlob
+import json
+from datetime import datetime
 import os
 from dotenv import load_dotenv
 from anthropic import Anthropic
