@@ -1,11 +1,11 @@
+import sys
 import os
-import glob
 from dotenv import load_dotenv
 from anthropic import Anthropic
-from google.cloud import aiplatform
-from google.oauth2 import service_account
 import PyPDF2
-import pandas as pd
+import spacy
+from textblob import TextBlob
+import json
 from datetime import datetime
 
 # Load environment variables
@@ -13,11 +13,9 @@ load_dotenv()
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 
-# Initialize clients
+# Initialize clients and models
 anthropic = Anthropic(api_key=ANTHROPIC_API_KEY)
-
-# For Google AI Platform (you'll need to set up credentials)
-# aiplatform.init(project="your-project-id", location="us-central1")
+nlp = spacy.load('en_core_web_sm')
 
 def extract_text_from_pdf(pdf_path):
     """Extract text from a PDF file."""
@@ -63,6 +61,59 @@ def analyze_with_claude(text, document_name):
         return response.content[0].text
     except Exception as e:
         return f"Error analyzing with Claude: {e}"
+
+def perform_nlp_analysis(text):
+    """Perform NLP analysis using spaCy and textblob."""
+    results = {}
+
+    # spaCy analysis
+    doc = nlp(text)
+    entities = [(ent.text, ent.label_) for ent in doc.ents]
+    results['entities'] = entities
+
+    # Sentiment analysis
+    blob = TextBlob(text)
+    results['sentiment'] = {
+        'polarity': blob.sentiment.polarity,
+        'subjectivity': blob.sentiment.subjectivity,
+        'assessment': 'Positive' if blob.sentiment.polarity > 0.1 else 'Negative' if blob.sentiment.polarity < -0.1 else 'Neutral'
+    }
+
+    # Key phrases and patterns
+    results['key_phrases'] = [chunk.text for chunk in doc.noun_chunks if len(chunk.text.split()) > 1][:10]
+
+    return results
+
+def analyze_patterns(json_file_path):
+    """Analyze coercive control patterns from JSON export."""
+    try:
+        with open(json_file_path, 'r') as f:
+            data = json.load(f)
+
+        # Analyze patterns using Claude
+        patterns_text = json.dumps(data, indent=2)
+        analysis_prompt = f"""
+        Analyze these coercive control patterns for legal significance:
+
+        {patterns_text[:5000]}
+
+        Provide:
+        1. Pattern assessment for court proceedings
+        2. Evidence strength evaluation
+        3. Recommendations for legal strategy
+        """
+
+        response = anthropic.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=1500,
+            temperature=0.2,
+            messages=[{"role": "user", "content": analysis_prompt}]
+        )
+
+        return response.content[0].text
+
+    except Exception as e:
+        return f"Pattern analysis error: {e}"
 
 def process_documents(directory_path):
     """Process all PDF documents in the directory."""
@@ -120,14 +171,44 @@ def main():
     """Main execution function."""
     print("Starting AI Legal Document Analysis...")
 
-    # Directory containing legal documents
-    docs_dir = r"c:\Users\Muddm\Downloads"
+    if len(sys.argv) > 1:
+        command = sys.argv[1]
 
-    # Process documents
-    results = process_documents(docs_dir)
+        if command == "extract_pdf" and len(sys.argv) > 2:
+            # Extract PDF text
+            pdf_path = sys.argv[2]
+            text = extract_text_from_pdf(pdf_path)
+            print(text[:2000])  # Return first 2000 chars
 
-    # Generate report
-    generate_report(results)
+        elif command == "nlp_analysis" and len(sys.argv) > 2:
+            # Perform NLP analysis
+            file_path = sys.argv[2]
+            if file_path.endswith('.pdf'):
+                text = extract_text_from_pdf(file_path)
+            else:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    text = f.read()
+
+            nlp_results = perform_nlp_analysis(text)
+            print(f"Sentiment: {nlp_results['sentiment']['assessment']}")
+            print(f"Entities: {len(nlp_results['entities'])} detected")
+
+        elif command == "pattern_analysis" and len(sys.argv) > 2:
+            # Analyze patterns from JSON
+            json_path = sys.argv[2]
+            analysis = analyze_patterns(json_path)
+            print(analysis)
+
+        else:
+            # Default document processing
+            docs_dir = r"c:\Users\Muddm\Downloads"
+            results = process_documents(docs_dir)
+            generate_report(results)
+    else:
+        # Default behavior
+        docs_dir = r"c:\Users\Muddm\Downloads"
+        results = process_documents(docs_dir)
+        generate_report(results)
 
     print("Analysis complete!")
 
