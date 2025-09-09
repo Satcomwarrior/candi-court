@@ -14,6 +14,72 @@ def save_binary_file(file_name, data):
     print(f"File saved to to: {file_name}")
 
 
+# Configuration for Google AI Studio
+STUDIO_AI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta"
+STUDIO_AI_MODEL = "gemini-1.5-pro-latest"
+
+def call_studio_ai(prompt, files=None, model_name=None):
+    """
+    Call Google AI Studio (Gemini API) with the correct endpoint and model.
+    
+    Args:
+        prompt (str): The prompt text to send to the AI
+        files (list): Optional list of file paths to include in the request
+        model_name (str): Optional model name override (defaults to STUDIO_AI_MODEL)
+    
+    Returns:
+        str: The AI response text
+    """
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY environment variable is required")
+    
+    client = genai.Client(
+        api_key=api_key,
+        # The client handles the endpoint URL internally
+    )
+    
+    # Use provided model or default
+    model = model_name or STUDIO_AI_MODEL
+    
+    # Prepare content parts
+    parts = [types.Part.from_text(text=prompt)]
+    
+    # Add file parts if provided
+    if files:
+        for file_path in files:
+            if os.path.exists(file_path):
+                if file_path.lower().endswith('.pdf'):
+                    # For PDF files, read and encode as base64
+                    with open(file_path, 'rb') as f:
+                        file_data = f.read()
+                    parts.append(types.Part.from_data(
+                        data=file_data,
+                        mime_type="application/pdf"
+                    ))
+                elif file_path.lower().endswith(('.txt', '.md')):
+                    # For text files, read content
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        file_content = f.read()
+                    parts.append(types.Part.from_text(text=f"\n\nFile: {file_path}\n{file_content}"))
+    
+    contents = [types.Content(role="user", parts=parts)]
+    
+    try:
+        # Generate response
+        response = client.models.generate_content(
+            model=model,
+            contents=contents
+        )
+        
+        if response.candidates and response.candidates[0].content:
+            return response.candidates[0].content.parts[0].text
+        else:
+            return "No response generated"
+            
+    except Exception as e:
+        raise RuntimeError(f"Error calling Google AI Studio: {str(e)}")
+
 def generate():
     client = genai.Client(
         api_key=os.environ.get("GEMINI_API_KEY"),
@@ -320,6 +386,12 @@ Alright, students, this is excellent. These documents provide us with irrefutabl
 """),
             ],
         ),
+    ]
+
+    # Configuration for content generation
+    generate_content_config = types.GenerateContentConfig(
+        temperature=0.7,
+        max_output_tokens=2048,
     )
 
     file_index = 0
