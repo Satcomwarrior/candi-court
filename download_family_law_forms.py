@@ -1,6 +1,5 @@
 import requests
 import os
-from bs4 import BeautifulSoup
 
 def download_family_law_forms():
     """
