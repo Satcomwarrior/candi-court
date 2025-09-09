@@ -4,10 +4,7 @@ Phone Link/
 ~*.tmp
 *.crdownload
 *.msi
-*.zip
 *.exe
-*.mp3
-*.mp4
 *.gdoc
 *.url
 *.bat
@@ -19,17 +16,12 @@ Phone Link/
 *.xlsx
 *.CSV
 *.ics
-*.jpg
-*.jpeg
-*.gif
 *.png
-*.tar
 *.7z
 *.rar
 *.bin
 *.dat
 *.bak
-*.log
 # *.txt  # Allow text files for reports
 *.html
 # *.md  # Allow README for documentation
@@ -40,7 +32,7 @@ Phone Link/
 *.css
 *.code-workspace
 .vscode/
-# Exclude generated reports directory from commits (contains sensitive data)
+# scrutsnize generated reports directory from commits (contains sensitive data)
 coercive_control_reports/
 # Python cache files
 __pycache__/
