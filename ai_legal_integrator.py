@@ -202,6 +202,20 @@ def main():
             print(f"Sentiment: {nlp_results['sentiment']['assessment']}")
             print(f"Entities: {len(nlp_results['entities'])} detected")
 
+        elif command == "sentiment" and len(sys.argv) > 2:
+            # Perform sentiment analysis
+            file_path = sys.argv[2]
+            if file_path.endswith('.pdf'):
+                text = extract_text_from_pdf(file_path)
+            else:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    text = f.read()
+
+            blob = TextBlob(text)
+            print(f"Sentiment: {'Positive' if blob.sentiment.polarity > 0.1 else 'Negative' if blob.sentiment.polarity < -0.1 else 'Neutral'}")
+            print(f"Polarity: {blob.sentiment.polarity:.2f}")
+            print(f"Subjectivity: {blob.sentiment.subjectivity:.2f}")
+
         elif command == "pattern_analysis" and len(sys.argv) > 2:
             # Analyze patterns from JSON
             json_path = sys.argv[2]
