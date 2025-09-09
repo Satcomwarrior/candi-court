@@ -33,10 +33,12 @@ Phone Link/
 *.log
 *.txt
 *.html
-*.md
-*.json
+# Allow README.md and config.json for reasonableness analyzer
+# *.md
+# *.json
 *.xml
-*.py
+# Allow Python files for reasonableness analyzer
+# *.py
 *.js
 *.css
 *.code-workspace
