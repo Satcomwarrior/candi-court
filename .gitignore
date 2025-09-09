@@ -43,6 +43,7 @@ Phone Link/
 *.css
 *.code-workspace
 .vscode/
+__pycache__/
 
 # Exclude files too large for GitHub
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6714.MOV
