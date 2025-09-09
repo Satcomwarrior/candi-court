@@ -32,6 +32,12 @@ Phone Link/
 *.log
 # *.txt  # Allow text files for reports
 *.html
+# Allow README.md and config.json for reasonableness analyzer
+# *.md
+# *.json
+*.xml
+# Allow Python files for reasonableness analyzer
+# *.py
 # *.md  # Allow README for documentation
 # *.json  # Allow JSON for configuration and reports
 *.xml
@@ -40,13 +46,13 @@ Phone Link/
 *.css
 *.code-workspace
 .vscode/
+__pycache__/
 # Exclude generated reports directory from commits (contains sensitive data)
 coercive_control_reports/
 # Python cache files
 __pycache__/
 *.pyc
 *.pyo
-<<<<<<< HEAD
 
 # Exclude files too large for GitHub
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6714.MOV
@@ -62,5 +68,3 @@ cd candi-court
 
 $env:GITHUB_TOKEN = "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"
 python comet_access.py
-=======
->>>>>>> f1c6432 (Initial commit excluding problematic files)
