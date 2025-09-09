@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: 2025 07 08 Dec of Candi in Response to cont.pdf
+Size: 0.68 MB
+Date Modified: 07/09/2025 02:31:32
+Path: C:\Users\Muddm\Downloads\MillerBrightwellExtract\2025 07 08 Dec of Candi in Response to cont.pdf
+
+EVIDENCE CLASSIFICATION:
+Unknown
+
+LEGAL SIGNIFICANCE:
+Standard Evidence
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

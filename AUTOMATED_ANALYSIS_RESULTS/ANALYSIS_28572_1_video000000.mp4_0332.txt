@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: 28572_1_video000000.mp4
+Size: 0.69 MB
+Date Modified: 05/01/2024 05:57:00
+Path: C:\Users\Muddm\Downloads\MediaExtract\28572_1_video000000.mp4
+
+EVIDENCE CLASSIFICATION:
+VIDEO EVIDENCE
+
+LEGAL SIGNIFICANCE:
+VISUAL DOCUMENTATION OF ABUSE/HARASSMENT
+
+RECOMMENDED ACTION:
+VIDEO ANALYSIS - FRAME EXTRACTION NEEDED
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

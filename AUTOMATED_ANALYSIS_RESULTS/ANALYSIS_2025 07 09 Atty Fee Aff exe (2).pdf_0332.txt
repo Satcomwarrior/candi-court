@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: 2025 07 09 Atty Fee Aff exe (2).pdf
+Size: 0.14 MB
+Date Modified: 07/09/2025 17:12:30
+Path: C:\Users\Muddm\Downloads\2025 07 09 Atty Fee Aff exe (2).pdf
+
+EVIDENCE CLASSIFICATION:
+Unknown
+
+LEGAL SIGNIFICANCE:
+Standard Evidence
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

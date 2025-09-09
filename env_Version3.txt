@@ -1,0 +1,2 @@
+GOOGLE_API_KEY=AIzaSyCBQflg7Dp2Z-f1YZWH6Hbewvk4SczEg2w
+ANTHROPIC_API_KEY=pip install anthropic google-cloud-aiplatform pandas PyPDF2 python-dotenv

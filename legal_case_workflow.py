@@ -1,0 +1,245 @@
+# FULL AUTOMATED LEGAL CASE WORKFLOW SCRIPT
+# Author: William Miller
+# Date: 09/07/2025
+
+import os
+import json
+
+# Uncomment and install if needed:
+# pip install python-docx openai requests
+
+# Import for document generation
+from docx import Document
+
+# Uncomment and configure your AI API
+# import openai
+
+# ==== CONFIGURATION ====
+
+YOUR_NAME = "William Miller"
+YOUR_PHONE = "206-226-2085"
+YOUR_EMAIL = "wmiller@muddmonkiesinc.com"
+
+# Your OpenAI API key here (replace with your key)
+# openai.api_key = "your_openai_api_key"
+
+# === STEP 1: DOCUMENT GENERATION ===
+
+def generate_legal_document(template_path, case_data, output_path):
+    """
+    Generate a legal document from a Word template by replacing placeholders.
+    """
+
+    doc = Document(template_path)
+
+    # Example simple replacement strategy (you can enhance with bookmarks or content controls)
+    for para in doc.paragraphs:
+        for key, value in case_data.items():
+            placeholder = f"{{{{{key}}}}}"  # e.g., {{case_number}}
+            if placeholder in para.text:
+                para.text = para.text.replace(placeholder, str(value))
+
+    doc.save(output_path)
+    print(f"[INFO] Generated legal document saved at {output_path}")
+    return output_path
+
+# === STEP 2: COMMUNICATIONS ANALYSIS (ChatGPT / Claude AI) ===
+
+def analyze_communications_via_ai(text):
+    """
+    Sends communication text to AI, returns analysis summary.
+    (Simulated for demonstration; replace with API call)
+    """
+    prompt = f"""Analyze the following communications for coercive control, manipulation, and perceived burdensomeness patterns:
+
+{text}
+
+Provide a detailed summary and identify key patterns relevant to family law matters."""
+
+    print("[AI] Sending communication analysis prompt to AI...")
+    # Simulated response
+    response = ("[AI LOGIC OUTPUT] Summary: Coercive control patterns evidenced "
+                "by repeated exclusion and isolative manipulation. Perceived burdensomeness "
+                "visible in language suggesting self-sacrifice for others' benefit.")
+    # Actual OpenAI call example:
+    # completion = openai.ChatCompletion.create(
+    #     model="gpt-4",
+    #     messages=[{"role": "user", "content": prompt}],
+    #     max_tokens=800
+    # )
+    # response = completion.choices[0].message['content']
+    return response
+
+# === STEP 3: FACTS SUMMARIZATION AND ARGUMENT GENERATION ===
+
+def summarize_case_facts(case_facts):
+    prompt = f"Summarize these legal facts clearly for a Snohomish County family law motion:\n{case_facts}"
+
+    print("[AI] Summarizing case facts...")
+    # Simulated response
+    summary = ("[Summary] The defendant engaged in repeated violations of "
+               "court orders, including financial abuse and property interference.")
+    # Actual OpenAI code commented:
+    # completion = openai.ChatCompletion.create(
+    #     model="gpt-4",
+    #     messages=[{"role": "user", "content": prompt}],
+    #     max_tokens=300
+    # )
+    # summary = completion.choices[0].message['content']
+    return summary
+
+def generate_legal_arguments(summary_text):
+    prompt = f"Generate 3-5 bullet points for legal arguments supporting a contempt or protective order motion based on this summary:\n{summary_text}"
+
+    print("[AI] Generating legal arguments...")
+    # Simulated response
+    arguments = [
+        "Defendant willfully violated the protection order repeatedly.",
+        "Financial transactions show ongoing support by plaintiff despite abuse.",
+        "Pattern of coercive control demonstrated by property exclusion.",
+        "Insurance cancellation during medical crisis constitutes bad faith.",
+        "Digital trespass evidences unauthorized surveillance."
+    ]
+    # Actual OpenAI call example:
+    # completion = openai.ChatCompletion.create(
+    #     model="gpt-4",
+    #     messages=[{"role": "user", "content": prompt}],
+    #     max_tokens=300
+    # )
+    # arguments_text = completion.choices[0].message['content']
+    # arguments = arguments_text.split('\n')
+    return arguments
+
+# === STEP 4: AI STUDIO DATA EXTRACTION (Simulated) ===
+
+def ai_studio_extract_metadata(doc_paths):
+    """
+    Simulate document metadata and entity extraction.
+    Replace with actual integration to AI Studio or similar services.
+    """
+    print("[AI Studio] Extracting metadata from documents...")
+    extracted = {
+        "dates": ["2024-09-13", "2025-03-08", "2025-06-28"],
+        "persons": ["William Miller", "Candi Brightwell"],
+        "categories": ["Evidence", "Financial Records", "Communications"],
+        "financial_summaries": {"PayPalTransfers2025": 7355.0}
+    }
+    return extracted
+
+# === STEP 5: EXPERT WITNESS OUTREACH EMAIL GENERATION ===
+
+def generate_intake_email(expert_type, provider_name):
+    templates = {
+        "psychologist": f"""Subject: Expert Psychological Evaluation and Testimony Inquiry for Snohomish County Family Law Case
+
+Dear {provider_name},
+
+I am preparing a family law case involving committed intimate relationship dissolution, psychological coercion, and trauma. I seek an expert psychologist for evaluation, expert testimony, and reporting.
+
+Please provide your experience in forensic evaluations, availability for remote or in-person consultations, fee structure, and engagement procedures.
+
+Thank you for your time.
+
+Best regards,
+{YOUR_NAME}
+Phone: {YOUR_PHONE}
+Email: {YOUR_EMAIL}
+""",
+        "financial_forensic": f"""Subject: Request for Financial Forensics Consultation and Expert Witness Services
+
+Dear {provider_name},
+
+I am involved in a family law proceeding needing a financial forensic expert to assess business valuation, asset tracing, and related financial abuse issues.
+
+Kindly share your experience with family law cases, availability, fees, and how to engage your services.
+
+Thank you.
+
+Sincerely,
+{YOUR_NAME}
+Phone: {YOUR_PHONE}
+Email: {YOUR_EMAIL}
+""",
+        "domestic_violence": f"""Subject: Inquiry Regarding Domestic Violence Expert Services for Family Law Case
+
+Dear {provider_name},
+
+I require an expert witness in domestic violence and coercive control to assist with expert reports and testimony in a family law matter.
+
+Please share your experience, availability for remote/in-person services, fee schedule, and intake process.
+
+Thank you for your assistance.
+
+Kind regards,
+{YOUR_NAME}
+Phone: {YOUR_PHONE}
+Email: {YOUR_EMAIL}
+"""
+    }
+    return templates.get(expert_type, "")
+
+def send_email(email_text):
+    """Simulate sending or saving email drafts."""
+    print("\n=== EMAIL DRAFT ===\n")
+    print(email_text)
+    print("\n=== END EMAIL ===\n")
+
+# === MAIN EXECUTION FUNCTION ===
+
+def main():
+    # Case facts & communications
+    # Pull facts from markdown summary
+    case_data = {
+        "case_number": "2025-PA-000123",
+        "facts": (
+            "William Miller qualifies as a vulnerable adult under RCW 74.34.020 due to medical vulnerability, PTSD, cognitive impairment, and physical incapacitation. "
+            "Evidence shows systematic abuse by Candi Brightwell, including property rights violations, medical emergency exploitation, and business interference. "
+            "Court filings and declarations confirm Miller as the primary victim, with Candi as the aggressor using DARVO tactics. "
+            "Critical legal issues include lockout during recovery, tool disposal, and withholding of property and business assets. "
+            "Legal standards and RCW analysis support modification/termination of protection orders and recognition of Miller's status."
+        )
+    }
+
+    communications_text = (
+        "Text/call transcripts show Candi as primary aggressor. "
+        "Police reports document Miller's suicidal ideation and garage banishment. "
+        "Medical records confirm vulnerable adult status. "
+        "Pattern of DARVO manipulation tactics by Candi. "
+        "Surveillance admission and EMS records document medical crisis events."
+    )
+
+    # 1) Generate Draft Legal Document
+    output_doc = generate_legal_document("templates/motion_template.docx", case_data, f"outputs/{case_data['case_number']}_motion.docx")
+
+    # 2) Analyze Communications with AI
+    comms_analysis = analyze_communications_via_ai(communications_text)
+    print("[COMMUNICATIONS ANALYSIS]\n", comms_analysis)
+
+    # 3) Summarize Facts and Generate Arguments
+    fact_summary = summarize_case_facts(case_data["facts"])
+    arguments = generate_legal_arguments(fact_summary)
+    print("[CASE SUMMARY]\n", fact_summary)
+    print("[LEGAL ARGUMENTS]")
+    for arg in arguments:
+        print("- ", arg)
+
+    # 4) Extract Document Metadata via AI Studio
+    extracted_data = ai_studio_extract_metadata([output_doc])
+    print("[AI STUDIO EXTRACTED DATA]\n", json.dumps(extracted_data, indent=2))
+
+    # 5) Prepare and output expert witness outreach emails
+    expert_list = [
+        {"type": "psychologist", "provider": "Wilson Psychological & Forensic Services"},
+        {"type": "psychologist", "provider": "Snohomish Counseling Collective"},
+        {"type": "psychologist", "provider": "Dr. Rachael Silverman"},
+        {"type": "financial_forensic", "provider": "4 Corners Financial Forensics"},
+        {"type": "financial_forensic", "provider": "Family Law Consulting"},
+        {"type": "domestic_violence", "provider": "LCADV Expert Witness Project"}
+    ]
+
+    for expert in expert_list:
+        email_body = generate_intake_email(expert["type"], expert["provider"])
+        send_email(email_body)
+
+if __name__ == "__main__":
+    main()
