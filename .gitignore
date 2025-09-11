@@ -1,3 +1,9 @@
+# Environment variables (contains sensitive API keys)
+.env
+
+# Extracted legal content (externalized from hardcoded data)
+case_content/
+
 # Exclude problematic files and folders for Git on Windows
 Phone Link/
 ~*.docx
@@ -40,13 +46,14 @@ Phone Link/
 *.css
 *.code-workspace
 .vscode/
+
 # Exclude generated reports directory from commits (contains sensitive data)
 coercive_control_reports/
+
 # Python cache files
 __pycache__/
 *.pyc
 *.pyo
-<<<<<<< HEAD
 
 # Exclude files too large for GitHub
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6714.MOV
@@ -54,13 +61,3 @@ iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6715.MOV
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6721.MOV
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6725.MOV
 Unpacking_Irregularities__Washington_State_s_Legal_&_Regulatory_Systems_Under_the_Microscope.m4a
-
-git clone https://github.com/satcomwarrior/candi-court.git
-
-git clone https://github.com/Satcomwarrior/candi-court.git
-cd candi-court
-
-$env:GITHUB_TOKEN = "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"
-python comet_access.py
-=======
->>>>>>> f1c6432 (Initial commit excluding problematic files)

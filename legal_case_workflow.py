@@ -43,6 +43,63 @@ def generate_legal_document(template_path, case_data, output_path):
     print(f"[INFO] Generated legal document saved at {output_path}")
     return output_path
 
+# === STEP 1.5: DIRECTORY SETUP ===
+
+def ensure_case_directories():
+    """
+    Create necessary case directories with proper error handling.
+    This ensures the case_folder/exhibits directory exists for PDF storage.
+    """
+    directories = [
+        'case_folder',
+        'case_folder/exhibits',
+        'outputs',
+        'templates'
+    ]
+    
+    for directory in directories:
+        try:
+            os.makedirs(directory, exist_ok=True)
+            print(f"[INFO] Ensured directory exists: {directory}")
+        except OSError as e:
+            print(f"[ERROR] Failed to create directory {directory}: {e}")
+            raise
+        except Exception as e:
+            print(f"[ERROR] Unexpected error creating directory {directory}: {e}")
+            raise
+    
+    # Create README in exhibits folder if it doesn't exist
+    readme_path = os.path.join('case_folder', 'exhibits', 'README.md')
+    if not os.path.exists(readme_path):
+        try:
+            with open(readme_path, 'w', encoding='utf-8') as f:
+                f.write("""# Case Exhibits Directory
+
+This directory is for storing PDF documents and other exhibits related to your legal case.
+
+## Usage
+- Place PDF exhibits here for AI analysis
+- Organize files with descriptive names
+- Include dates in filenames when relevant
+
+## File Types Supported
+- PDF documents (.pdf)
+- Text files (.txt)
+- Markdown files (.md) 
+- Word documents (.docx)
+
+## Example Files
+- motion_2025_01_15.pdf
+- communications_transcript.txt
+- medical_records_summary.pdf
+- financial_documents.pdf
+
+The AI analysis tools will automatically process files from this directory when specified in the workflow.
+""")
+            print(f"[INFO] Created README in exhibits directory: {readme_path}")
+        except Exception as e:
+            print(f"[WARNING] Could not create README file: {e}")
+
 # === STEP 2: COMMUNICATIONS ANALYSIS (ChatGPT / Claude AI) ===
 
 def analyze_communications_via_ai(text):
@@ -245,6 +302,10 @@ def send_email(email_text):
 # === MAIN EXECUTION FUNCTION ===
 
 def main():
+    # Create necessary directories first
+    print("[SETUP] Creating case directory structure...")
+    ensure_case_directories()
+    
     # Case facts & communications
     # Pull facts from markdown summary
     case_data = {
