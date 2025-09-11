@@ -1,0 +1,7 @@
+AI_Analysis_Results/
+├── OpenAI_Analysis_[filename].txt
+├── Claude_Analysis_[filename].txt  
+├── Gemini_Analysis_[filename].txt
+├── LocalLLM_Analysis_[filename].txt
+├── COMPREHENSIVE_AI_ANALYSIS_REPORT.md
+└── automation_log.txt

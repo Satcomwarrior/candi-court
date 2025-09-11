@@ -1,0 +1,95 @@
+﻿############## * Google Confidential and Proprietary * ###############
+ANDROID DEVICE CONFIGURATION SERVICE DATA 
+Device and Account Identifiers
+Android ID: 3698553136230918841
+MEID(s): 
+IMEI(s): 
+ESN(s): 
+Serial Number(s): gta8wifi:R9PT104RGBH
+MAC Addresses: 
+
+Friendly Name: 
+
+Device Attributes
+Locale: en-US
+Timezone: America/Los_Angeles
+
+Hardware: ums512_25c10
+Model: SM-X200
+Brand: samsung
+Manufacturer: samsung
+Device Type: Android
+Device Sub-type: Tablet
+Device: gta8wifi
+Partner Client ID: android-samsung-ss
+Product: gta8wifixx
+Radio Firmware Version: 
+Bootloader Firmware Version: X200XXS5DXJ5
+
+Touch Screen Type: Finger
+Keyboard Type: No Keys
+Hard Keyboard: false
+Navigation Type: No Navigation
+Five Way Navigation: false
+Screen Layout: Extra Large
+Dynamic Screen Layout: Undefined
+Screen Density: 240 DPI
+Screen Height: 1920 pixels
+Screen Width: 1200 pixels
+Smallest Screen Width: 800 pixels
+
+System Shared Libraries: EpdgManager, SecureKeyBlob, SemAudioThumbnail, SmpsManager, android.ext.shared, android.hidl.base-V1.0-java, android.hidl.manager-V1.0-java, android.net.ipsec.ike, android.test.base, android.test.mock, android.test.runner, androidx.window.extensions, androidx.window.sidecar, com.android.cts.ctsshim.shared_library, com.android.future.usb.accessory, com.android.location.provider, com.android.media.remotedisplay, com.android.mediadrm.signer, com.google.android.gms, com.samsung.android.ibs.framework-v1, com.samsung.android.privacydashboard.framework-v1, com.samsung.android.psitrackersdk.framework-v1, com.samsung.android.semtelephonesdk.framework-v1, com.samsung.android.spensdk.framework-v1, com.samsung.bbc, com.samsung.device, com.sec.android.sdhmssdk.framework-v1, com.unisoc.sdk.common, imsmanager, javax.obex, knoxanalyticssdk, knoxsdk, lib.engmodejni.samsung.so, libBokeh2Frames.so, libDefog.so, libFacePreProcessing.camera.samsung.so, libFacePreProcessing_jni.camera.samsung.so, libHprFace_GAE_api.camera.samsung.so, libHprFace_GAE_jni.camera.samsung.so, libHpr_RecGAE_cvFeature_v1.0.camera.samsung.so, libImageScreener.camera.samsung.so, libInteractiveSegmentation.camera.samsung.so, libMyFilterPlugin.camera.samsung.so, libObjectAndSceneClassification_2.5_OD.camera.samsung.so, libOpenCL.so, libOpenCL.so.1, libOpenCL.so.1.1, libOpenCL.so.1.2, libOpenCv.camera.samsung.so, libQREngine.camera.samsung.so, libSDKRecognitionText.spensdk.samsung.so, libSEF.quram.so, libSFEffect.fonteffect.samsung.so, libSegLite.so, libSlowShutter_jni.media.samsung.so, libTfliteWrapper.so, lib_nativeJni.dk.samsung.so, lib_native_client.dk.samsung.so, lib_vnd_client.dk.samsung.so, libagifencoder.quram.so, libaudiomirroring_jni.audiomirroring.samsung.so, libbokeh_gaussian_cap.so, libexifa.camera.samsung.so, libheifcapture_jni.media.samsung.so, libhumantracking_util.camera.samsung.so, libimagecodec.quram.so, libinfo.so, libinterface.so, libjpeg_hw_sprd.so, libjpega.camera.samsung.so, libjpegsq.media.samsung.so, libkey.so, libknox_remotedesktopclient.knox.samsung.so, libportrait_scene_cap.so, libsce_v1.crypto.samsung.so, libsecimaging.camera.samsung.so, libsecimaging_pdk.camera.samsung.so, libsecjpeginterface.camera.samsung.so, libsemimagecrop_jni.media.samsung.so, libsimba.media.samsung.so, libsjpegxl.media.samsung.so, libslljpeg.media.samsung.so, libsmart_cropping.camera.samsung.so, libsmpsft.smps.samsung.so, libsprdbokeh.so, libsume_jni.media.samsung.so, libsurfaceutil.camera.samsung.so, libverify.so, manager_wrapper_compat, mcfsdk, org.apache.http.legacy, org.simalliance.openmobileapi, rcsopenapi, saiv, samsungkeystoreutils, scamera_sdk_util, secimaging, semextendedformat, semmediatranscoder, semsdrvideoconverter, smartlink_sdk, uibc_java, vsimmanager, worker_wrapper_compat, ztsdk
+Supported Native Platforms / CPU Types: arm64-v8a, armeabi-v7a, armeabi
+Supported Locales: af, am, ar, ar-AE, ar-IL, ar-XB, as, as-IN, az, az-AZ, be, be-BY, bg, bg-BG, bn, bn-BD, bn-IN, bs, bs-BA, ca, ca-ES, cs, cs-CZ, da, da-DK, de, de-AT, de-CH, de-DE, el, el-GR, en, en-AU, en-CA, en-DI, en-GB, en-IE, en-IN, en-NZ, en-PH, en-US, en-XA, en-ZA, en-ZG, es, es-ES, es-US, et, et-EE, eu, eu-ES, fa, fa-IR, fi, fi-FI, fil, fil-PH, fr, fr-BE, fr-CA, fr-CH, fr-FR, ga, ga-IE, gl, gl-ES, gu, gu-IN, hi, hi-IN, hr, hr-HR, hu, hu-HU, hy, hy-AM, in, in-ID, is, is-IS, it, it-IT, iw, iw-IL, ja, ja-JP, ka, ka-GE, kk, kk-KZ, km, km-KH, kn, kn-IN, ko, ko-KR, ky, ky-KG, lo, lo-LA, lt, lt-LT, lv, lv-LV, mk, mk-MK, ml, ml-IN, mn, mn-MN, mr, mr-IN, ms, ms-MY, my, my-MM, my-ZG, nb, nb-NO, ne, ne-NP, nl, nl-BE, nl-NL, or, or-IN, pa, pa-IN, pl, pl-PL, pl-SP, pt, pt-BR, pt-PT, ro, ro-RO, ru, ru-RU, si, si-LK, sk, sk-SK, sl, sl-SI, sq, sq-AL, sr, sr-Cyrl-RS, sr-Latn, sr-Latn-RS, sr-RS, sv, sv-SE, sw, ta, ta-IN, te, te-IN, tg, tg-TJ, th, th-TH, tk, tk-TM, tr, tr-TR, uk, uk-UA, ur, ur-PK, uz, uz-UZ, vi, vi-VN, zh, zh-CN, zh-HK, zh-TW, zu
+Supported OpenGL Extensions: GL_ANDROID_extension_pack_es31a, GL_ARM_mali_program_binary, GL_ARM_mali_shader_binary, GL_ARM_rgba8, GL_ARM_shader_framebuffer_fetch, GL_ARM_shader_framebuffer_fetch_depth_stencil, GL_ARM_texture_unnormalized_coordinates, GL_EXT_EGL_image_array, GL_EXT_YUV_target, GL_EXT_blend_minmax, GL_EXT_buffer_storage, GL_EXT_color_buffer_float, GL_EXT_color_buffer_half_float, GL_EXT_copy_image, GL_EXT_debug_marker, GL_EXT_discard_framebuffer, GL_EXT_disjoint_timer_query, GL_EXT_draw_buffers_indexed, GL_EXT_draw_elements_base_vertex, GL_EXT_external_buffer, GL_EXT_geometry_shader, GL_EXT_gpu_shader5, GL_EXT_multisampled_render_to_texture, GL_EXT_multisampled_render_to_texture2, GL_EXT_occlusion_query_boolean, GL_EXT_primitive_bounding_box, GL_EXT_protected_textures, GL_EXT_read_format_bgra, GL_EXT_robustness, GL_EXT_sRGB, GL_EXT_sRGB_write_control, GL_EXT_shader_framebuffer_fetch, GL_EXT_shader_io_blocks, GL_EXT_shader_non_constant_global_initializers, GL_EXT_shader_pixel_local_storage, GL_EXT_shadow_samplers, GL_EXT_tessellation_shader, GL_EXT_texture_border_clamp, GL_EXT_texture_buffer, GL_EXT_texture_compression_astc_decode_mode, GL_EXT_texture_compression_astc_decode_mode_rgb9e5, GL_EXT_texture_cube_map_array, GL_EXT_texture_filter_anisotropic, GL_EXT_texture_format_BGRA8888, GL_EXT_texture_rg, GL_EXT_texture_sRGB_R8, GL_EXT_texture_sRGB_RG8, GL_EXT_texture_sRGB_decode, GL_EXT_texture_storage, GL_EXT_texture_type_2_10_10_10_REV, GL_EXT_unpack_subimage, GL_KHR_blend_equation_advanced, GL_KHR_blend_equation_advanced_coherent, GL_KHR_debug, GL_KHR_robust_buffer_access_behavior, GL_KHR_robustness, GL_KHR_texture_compression_astc_hdr, GL_KHR_texture_compression_astc_ldr, GL_KHR_texture_compression_astc_sliced_3d, GL_OES_EGL_image, GL_OES_EGL_image_external, GL_OES_EGL_image_external_essl3, GL_OES_EGL_sync, GL_OES_blend_equation_separate, GL_OES_blend_func_separate, GL_OES_blend_subtract, GL_OES_byte_coordinates, GL_OES_compressed_ETC1_RGB8_texture, GL_OES_compressed_paletted_texture, GL_OES_copy_image, GL_OES_depth24, GL_OES_depth_texture, GL_OES_depth_texture_cube_map, GL_OES_draw_buffers_indexed, GL_OES_draw_elements_base_vertex, GL_OES_draw_texture, GL_OES_element_index_uint, GL_OES_extended_matrix_palette, GL_OES_fbo_render_mipmap, GL_OES_fixed_point, GL_OES_framebuffer_object, GL_OES_geometry_shader, GL_OES_get_program_binary, GL_OES_gpu_shader5, GL_OES_mapbuffer, GL_OES_matrix_get, GL_OES_matrix_palette, GL_OES_packed_depth_stencil, GL_OES_point_size_array, GL_OES_point_sprite, GL_OES_primitive_bounding_box, GL_OES_query_matrix, GL_OES_read_format, GL_OES_required_internalformat, GL_OES_rgb8_rgba8, GL_OES_sample_shading, GL_OES_sample_variables, GL_OES_shader_image_atomic, GL_OES_shader_io_blocks, GL_OES_shader_multisample_interpolation, GL_OES_single_precision, GL_OES_standard_derivatives, GL_OES_stencil8, GL_OES_stencil_wrap, GL_OES_surfaceless_context, GL_OES_tessellation_shader, GL_OES_texture_3D, GL_OES_texture_border_clamp, GL_OES_texture_buffer, GL_OES_texture_compression_astc, GL_OES_texture_cube_map, GL_OES_texture_cube_map_array, GL_OES_texture_mirrored_repeat, GL_OES_texture_npot, GL_OES_texture_stencil8, GL_OES_texture_storage_multisample_2d_array, GL_OES_vertex_array_object, GL_OES_vertex_half_float, GL_OVR_multiview, GL_OVR_multiview2, GL_OVR_multiview_multisampled_render_to_texture
+Number Of Available Processors: 8
+Secure Screenlock Available: true
+Total Memory: 3652722688 Bytes
+Low Ram Device: false
+Maximum APK Download Size: 50 MB
+System Available Features: 
+FeatureVersionandroid.hardware.audio.outputandroid.hardware.biometrics.faceandroid.hardware.bluetoothandroid.hardware.bluetooth_leandroid.hardware.broadcastradioandroid.hardware.cameraandroid.hardware.camera.anyandroid.hardware.camera.autofocusandroid.hardware.camera.capability.manual_sensorandroid.hardware.camera.frontandroid.hardware.faketouchandroid.hardware.hardware_keystore4android.hardware.keystore.limited_use_keyandroid.hardware.locationandroid.hardware.location.gpsandroid.hardware.location.networkandroid.hardware.microphoneandroid.hardware.opengles.aepandroid.hardware.ram.normalandroid.hardware.reboot_escrowandroid.hardware.screen.landscapeandroid.hardware.screen.portraitandroid.hardware.security.model.compatibleandroid.hardware.sensor.accelerometerandroid.hardware.sensor.compassandroid.hardware.sensor.gyroscopeandroid.hardware.sensor.lightandroid.hardware.sensor.stepcounterandroid.hardware.sensor.stepdetectorandroid.hardware.telephony.imsandroid.hardware.telephony.ims.singleregandroid.hardware.touchscreenandroid.hardware.touchscreen.multitouchandroid.hardware.touchscreen.multitouch.distinctandroid.hardware.touchscreen.multitouch.jazzhandandroid.hardware.usb.accessoryandroid.hardware.usb.hostandroid.hardware.vulkan.computeandroid.hardware.vulkan.level1android.hardware.vulkan.version4198400android.hardware.wifiandroid.hardware.wifi.directandroid.hardware.wifi.passpointandroid.software.activities_on_secondary_displaysandroid.software.app_enumerationandroid.software.app_widgetsandroid.software.autofillandroid.software.backupandroid.software.cant_save_stateandroid.software.companion_device_setupandroid.software.connectionserviceandroid.software.controlsandroid.software.ctsandroid.software.device_adminandroid.software.file_based_encryptionandroid.software.freeform_window_managementandroid.software.home_screenandroid.software.incremental_delivery1android.software.input_methodsandroid.software.ipsec_tunnelsandroid.software.live_wallpaperandroid.software.managed_usersandroid.software.midiandroid.software.opengles.deqp.level132449025android.software.picture_in_pictureandroid.software.printandroid.software.secure_lock_screenandroid.software.securely_removes_usersandroid.software.sipandroid.software.sip.voipandroid.software.verified_bootandroid.software.voice_recognizersandroid.software.vulkan.deqp.level132449025android.software.webviewcom.google.android.feature.TURBO_PRELOADcom.samsung.android.api.version.2402com.samsung.android.api.version.2403com.samsung.android.api.version.2501com.samsung.android.api.version.2502com.samsung.android.api.version.2601com.samsung.android.api.version.2701com.samsung.android.api.version.2801com.samsung.android.api.version.2802com.samsung.android.api.version.2803com.samsung.android.api.version.2901com.samsung.android.api.version.2902com.samsung.android.api.version.2903com.samsung.android.api.version.3001com.samsung.android.api.version.3002com.samsung.android.api.version.3101com.samsung.android.api.version.3201com.samsung.android.api.version.3301com.samsung.android.knox.knoxsdkcom.samsung.android.knox.knoxsdk.api.level.33com.samsung.android.knox.knoxsdk.api.level.34com.samsung.android.knox.knoxsdk.api.level.35com.samsung.android.knox.knoxsdk.api.level.36com.samsung.android.sdk.camera.processorcom.samsung.android.sdk.camera.processor.effectcom.samsung.feature.SAMSUNG_EXPERIENCEcom.samsung.feature.SAMSUNG_EXPERIENCE_AMcom.samsung.feature.clockpack_v10com.samsung.feature.device_category_tabletcom.samsung.feature.galaxyfinder_v7com.samsung.feature.samsung_experience_mobilecom.samsung.feature.support_repair_modecom.sec.feature.cocktailpanelcom.sec.feature.covercom.sec.feature.cover.flipcom.sec.feature.motionrecognition_servicecom.sec.feature.saccessorymanagerandroid.software.window_magnificationcom.samsung.android.api.version.3302com.samsung.android.api.version.3401com.samsung.android.camera.cameraserviceworker1com.samsung.android.camera.deviceinjector2com.samsung.android.knox.knoxsdk.api.level.37android.software.contextualsearchandroid.software.credentialscom.google.android.feature.ASI_MINIMALcom.samsung.android.camera.deviceinjector4com.sec.feature.battauthmanagerandroid.software.sdksandbox.sdk_install_work_profile
+GLES Version: 196610
+OEM Play Auto Installs Configuration Key: XAR
+OTA Installed Build: false
+
+Managing App: 
+Managing App Signing Certificate (SHA1, deprecated): 
+Managing App Signing Certificate (SHA-256): 
+
+System Software and Security Versions
+Build Product: gta8wifixx
+OS Build Fingerprint: samsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXS5DXJ5:user/release-keys
+OS Build Timestamp: Oct 28, 2024, 2:07:51 AM UTC
+Android SDK Version: 34
+Google Services Framework / Google Play Services Version: 250234029
+Security Patch Level: 2024-11-01
+OTA Certificates: pQCiqOznWXJsMOtUFQOoAlW1zig=, Pcsad29a5jlLVFIZ9U5JX6bj0ao=
+
+Network Connectivity & Performance
+Current SIM Operator(MCC+MNC): 
+Current Cell Operator(MCC+MNC): 
+Data Network Type: WIFI
+Last SIM Operator(MCC+MNC): 
+Last Cell Operator(MCC+MNC): 
+Last eUICC Provisioned: 
+Last Carrier ID: 
+SIM Subscription Data: 
+SIM Operator (MCC+MNC)Carrier NameRoaming StateDefault RolesTruncated IMSIGroup ID Level1
+Registration Time: Sep 8, 2024, 12:52:39 AM UTC
+First Data Connection Time: Sep 8, 2024, 12:52:39 AM UTC
+
+Time of Last Data Connection: Feb 5, 2025, 2:23:52 PM UTC
+Reason for Last Data Connection: Device Booted
+Last Data Connection Attempt Count: 1
+App Package Triggering Last Data Connection: unspecified
+App Class Triggering Last Data Connection: 
+App Used Force Option For Triggering Last Data Connection: 
+Recent Successful Android Device Configuration Service Connections: 
+Connection TimeBuild FingerprintProductBrandRadio Firmware VersionBootloader Firmware VersionGoogle Play Services VersionSep 8, 2024, 3:05:02 PM UTCSep 9, 2024, 3:07:12 AM UTCSep 9, 2024, 3:08:15 PM UTCSep 10, 2024, 3:09:23 AM UTCSep 10, 2024, 3:11:28 PM UTCSep 11, 2024, 1:26:36 AM UTCSep 17, 2024, 9:30:30 AM UTCSep 22, 2024, 4:46:56 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXU4DXH1:user/release-keysums512_25c10samsungX200XXU4DXH1243530038Sep 23, 2024, 5:30:07 PM UTCSep 25, 2024, 12:53:56 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXU4DXH1:user/release-keysums512_25c10samsungX200XXU4DXH1243633029Sep 30, 2024, 10:13:03 AM UTCOct 2, 2024, 12:58:27 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXU4DXH1:user/release-keysums512_25c10samsungX200XXU4DXH1243734029Oct 6, 2024, 6:30:08 PM UTCOct 8, 2024, 12:35:08 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXU4DXH1:user/release-keysums512_25c10samsungX200XXU4DXH1243834029Oct 24, 2024, 2:05:54 AM UTCNov 5, 2024, 3:13:43 AM UTCNov 5, 2024, 6:25:13 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXU4DXH1:user/release-keysums512_25c10samsungX200XXU4DXH1244336029Dec 14, 2024, 6:20:49 AM UTCDec 14, 2024, 7:11:34 PM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXU4DXH1:user/release-keysums512_25c10samsungX200XXU4DXH1244738029Dec 15, 2024, 4:35:48 AM UTCDec 16, 2024, 3:02:25 AM UTCDec 16, 2024, 8:01:58 PM UTCDec 17, 2024, 2:08:24 PM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXS5DXJ5:user/release-keysums512_25c10samsungX200XXS5DXJ5244738029Dec 19, 2024, 8:08:43 AM UTCDec 20, 2024, 8:41:10 AM UTCDec 20, 2024, 8:56:53 PM UTCDec 22, 2024, 8:47:57 AM UTCDec 23, 2024, 6:59:49 PM UTCDec 24, 2024, 3:22:50 AM UTCDec 24, 2024, 12:18:49 PM UTCDec 25, 2024, 4:14:58 AM UTCDec 25, 2024, 5:10:03 AM UTCDec 26, 2024, 5:25:26 PM UTCDec 26, 2024, 7:57:30 PM UTCDec 26, 2024, 9:41:37 PM UTCDec 26, 2024, 11:56:36 PM UTCDec 27, 2024, 2:36:09 AM UTCDec 27, 2024, 7:47:51 AM UTCJan 6, 2025, 6:33:08 PM UTCJan 12, 2025, 6:22:19 AM UTCJan 12, 2025, 7:10:44 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXS5DXJ5:user/release-keysums512_25c10samsungX200XXS5DXJ5244933029Jan 16, 2025, 9:08:38 AM UTCJan 18, 2025, 4:41:21 PM UTCJan 21, 2025, 1:28:45 AM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXS5DXJ5:user/release-keysums512_25c10samsungX200XXS5DXJ5245034029Jan 22, 2025, 12:57:04 PM UTCJan 26, 2025, 10:58:35 AM UTCJan 29, 2025, 1:37:31 AM UTCJan 31, 2025, 7:12:48 AM UTCFeb 1, 2025, 9:47:29 PM UTCsamsung/gta8wifixx/gta8wifi:14/UP1A.231005.007/X200XXS5DXJ5:user/release-keysums512_25c10samsungX200XXS5DXJ5250234029Feb 4, 2025, 1:40:31 PM UTCFeb 5, 2025, 2:23:52 PM UTC
+Recent Failed Android Device Configuration Service Connections: 
+Connection TimeHTTP Response Code
+Audit Log: 
+Event TimeIdentifierMessage
+
+############## * Google Confidential and Proprietary * ###############
