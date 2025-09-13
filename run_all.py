@@ -86,10 +86,28 @@ def main():
     p4.add_argument("--text", help="Raw text input")
     p4.set_defaults(func=cmd_reason)
 
+    p5 = sub.add_parser("intake-email", help="Send intake email to recipients from CSVs")
+    p5.add_argument("--subject", default="Case Intake: Background and Next Steps")
+    p5.add_argument("--body", default=str(Path("intake_email_draft.txt")))
+    p5.add_argument("--attach", action="append", default=[])
+    p5.add_argument("--dry-run", action="store_true")
+    def _cmd_intake(ns):
+        from automation.automate_intake_email import main as intake_main
+        argv = [
+            "--subject", ns.subject,
+            "--body", ns.body,
+        ]
+        for a in ns.attach:
+            argv += ["--attach", a]
+        if ns.dry_run:
+            argv.append("--dry-run")
+        sys.argv = ["automate_intake_email.py"] + argv
+        intake_main()
+    p5.set_defaults(func=_cmd_intake)
+
     args = ap.parse_args()
     args.func(args)
 
 
 if __name__ == "__main__":
     main()
-
