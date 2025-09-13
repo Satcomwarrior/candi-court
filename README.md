@@ -37,3 +37,23 @@ This tool analyzes the reasonableness of legal requests and complaints based on 
 - Use of proper legal terminology
 - Citations of relevant laws or regulations
 - Realistic vs. frivolous claims
+
+## Installation
+
+Install the core dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+For development (includes testing tools):
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+To build the documentation:
+
+```bash
+pip install -r requirements-doc.txt
+```

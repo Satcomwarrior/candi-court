@@ -18,11 +18,3 @@ numpy>=2.1.0
 # Configuration and Utilities
 pyyaml>=6.0.2
 python-dateutil>=2.9.0
-
-# Testing and Development
-pytest>=8.3.0
-pytest-cov>=5.0.0
-
-# Documentation
-sphinx>=8.0.0
-sphinx-rtd-theme>=2.0.0

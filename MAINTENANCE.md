@@ -6,13 +6,10 @@ This document outlines maintenance tasks, improvements, and technical debt items
 ## Recent Updates (September 2025)
 
 ### ✅ Completed Tasks
-1. **Dependencies Update** - Enhanced requirements.txt with comprehensive dependencies:
-   - Added NLP libraries (spaCy ≥3.8.0, TextBlob ≥0.19.0, NLTK ≥3.9.1)
-   - Added web scraping tools (requests, BeautifulSoup4, lxml)
-   - Added data processing libraries (pandas, numpy)
-   - Added testing framework (pytest, pytest-cov)
-   - Added documentation tools (Sphinx)
-   - Organized dependencies by category
+1. **Dependencies Update** - Split requirements into base and optional extras:
+   - `requirements.txt` for core functionality
+   - `requirements-dev.txt` for testing and development
+   - `requirements-doc.txt` for documentation
 
 ### 🔄 Pending Merge (PR #6)
 The following enhancements are ready but blocked by merge conflicts:
@@ -127,8 +124,14 @@ The following enhancements are ready but blocked by merge conflicts:
 
 ### Development Setup
 ```bash
-# Install dependencies
+# Install core dependencies
 pip install -r requirements.txt
+
+# For development tools
+pip install -r requirements-dev.txt
+
+# For building documentation
+pip install -r requirements-doc.txt
 
 # Download spaCy model
 python -m spacy download en_core_web_sm
