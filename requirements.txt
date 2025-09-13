@@ -1,6 +1,5 @@
 # Core Legal Analysis Dependencies
 python-docx==0.8.11
-<<<<<<< HEAD
 
 # AI Studio Integration
 google-genai>=1.33.0
@@ -22,14 +21,7 @@ numpy>=2.1.0
 # Configuration and Utilities
 pyyaml>=6.0.2
 python-dateutil>=2.9.0
-=======
-google-genai>=1.33.0
-spacy>=3.8.0
-transformers>=4.56.0
-torch>=2.8.0
+
+# ML and Text Analysis
 scikit-learn>=1.7.0
-pandas>=2.3.0
-numpy>=2.3.0
 textstat>=0.7.0
-requests>=2.31.0
->>>>>>> origin/copilot/vscode1757381084291
