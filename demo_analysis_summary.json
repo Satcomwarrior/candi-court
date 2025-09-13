@@ -1,0 +1,32 @@
+{
+  "total_instances": 38,
+  "pattern_breakdown": {
+    "Gaslighting Patterns": 2,
+    "Guilt Manipulation": 6,
+    "Reality Questioning": 3,
+    "Threatening Behavior": 3,
+    "Conditional Threats": 1,
+    "Dependency Creation": 8,
+    "Emotional Blackmail": 4,
+    "Social Isolation": 6,
+    "Financial Control": 4,
+    "Isolation Tactics": 1
+  },
+  "method_breakdown": {
+    "keyword": 8,
+    "paraphrased": 8,
+    "semantic": 21,
+    "regex": 1
+  },
+  "confidence_summary": {
+    "high": 3,
+    "medium": 35,
+    "low": 0
+  },
+  "recommendations": [
+    "Focus on 3 high-confidence instances for court presentation",
+    "Document specific dates, times, and context for each incident",
+    "Track escalation patterns across 5 communication sources",
+    "Consider expert witness testimony for complex manipulation patterns"
+  ]
+}

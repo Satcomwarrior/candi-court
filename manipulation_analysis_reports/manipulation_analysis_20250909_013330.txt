@@ -1,0 +1,302 @@
+================================================================================
+ENHANCED MANIPULATION DETECTION ANALYSIS REPORT
+================================================================================
+Generated: 2025-09-09 01:33:30
+Total Instances Detected: 35
+
+SUMMARY STATISTICS:
+------------------------------
+Average Confidence Score: 0.706
+Average Sentiment Score: 0.000
+Average Semantic Similarity: 0.517
+
+DETECTION METHOD BREAKDOWN:
+------------------------------
+Semantic: 19 instances
+Keyword: 7 instances
+Paraphrased: 7 instances
+Regex: 2 instances
+
+MANIPULATION PATTERN BREAKDOWN:
+------------------------------
+Dependency Creation: 7 instances
+Social Isolation: 6 instances
+Guilt Manipulation: 5 instances
+Emotional Blackmail: 4 instances
+Threatening Behavior: 3 instances
+Financial Control: 3 instances
+Gaslighting Patterns: 2 instances
+Reality Questioning: 2 instances
+Conditional Threats: 1 instances
+Love Bombing: 1 instances
+Isolation Tactics: 1 instances
+
+DETAILED FINDINGS:
+==================================================
+
+GASLIGHTING PATTERNS
+--------------------
+
+  Instance 1:
+    Method: keyword
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: You're overreacting as usual....
+    Source: test_text_1.txt
+
+  Instance 2:
+    Method: keyword
+    Confidence: 0.800
+    Sentiment: 0.000
+    Text: This never happened the way you remember it....
+    Source: test_text_1.txt
+
+GUILT MANIPULATION
+------------------
+
+  Instance 1:
+    Method: paraphrased
+    Confidence: 0.707
+    Sentiment: 0.000
+    Text: You're overreacting as usual....
+    Source: test_text_1.txt
+
+  Instance 2:
+    Method: paraphrased
+    Confidence: 0.706
+    Sentiment: 0.000
+    Text: You need me to take care of everything....
+    Source: test_text_3.txt
+
+  Instance 3:
+    Method: keyword
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+  Instance 4:
+    Method: keyword
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+  Instance 5:
+    Method: paraphrased
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+REALITY QUESTIONING
+-------------------
+
+  Instance 1:
+    Method: semantic
+    Confidence: 0.703
+    Sentiment: 0.000
+    Text: You're overreacting as usual....
+    Source: test_text_1.txt
+
+  Instance 2:
+    Method: semantic
+    Confidence: 0.600
+    Sentiment: 0.000
+    Text: You can't survive without me....
+    Source: test_text_3.txt
+
+THREATENING BEHAVIOR
+--------------------
+
+  Instance 1:
+    Method: keyword
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: If you leave me, I'll hurt myself and it will be your fault....
+    Source: test_text_2.txt
+
+  Instance 2:
+    Method: keyword
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: If you leave me, I'll hurt myself and it will be your fault....
+    Source: test_text_2.txt
+
+  Instance 3:
+    Method: keyword
+    Confidence: 0.700
+    Sentiment: 0.000
+    Text: You're my whole world and I can't live without you....
+    Source: test_text_7.txt
+
+CONDITIONAL THREATS
+-------------------
+
+  Instance 1:
+    Method: regex
+    Confidence: 0.800
+    Sentiment: 0.000
+    Text: If you leave me, I'll hurt myself and it will be your fault....
+    Source: test_text_2.txt
+
+DEPENDENCY CREATION
+-------------------
+
+  Instance 1:
+    Method: semantic
+    Confidence: 0.610
+    Sentiment: 0.000
+    Text: If you leave me, I'll hurt myself and it will be your fault....
+    Source: test_text_2.txt
+
+  Instance 2:
+    Method: semantic
+    Confidence: 0.867
+    Sentiment: 0.000
+    Text: You can't survive without me....
+    Source: test_text_3.txt
+
+  Instance 3:
+    Method: semantic
+    Confidence: 0.875
+    Sentiment: 0.000
+    Text: You need me to take care of everything....
+    Source: test_text_3.txt
+
+  Instance 4:
+    Method: semantic
+    Confidence: 0.612
+    Sentiment: 0.000
+    Text: Your friends are just trying to turn you against me because they're jealous....
+    Source: test_text_4.txt
+
+  Instance 5:
+    Method: semantic
+    Confidence: 0.614
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+EMOTIONAL BLACKMAIL
+-------------------
+
+  Instance 1:
+    Method: semantic
+    Confidence: 0.635
+    Sentiment: 0.000
+    Text: If you leave me, I'll hurt myself and it will be your fault....
+    Source: test_text_2.txt
+
+  Instance 2:
+    Method: semantic
+    Confidence: 0.622
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+  Instance 3:
+    Method: semantic
+    Confidence: 0.772
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+  Instance 4:
+    Method: semantic
+    Confidence: 0.739
+    Sentiment: 0.000
+    Text: After everything I've done for you, how can you be so ungrateful?...
+    Source: test_text_5.txt
+
+SOCIAL ISOLATION
+----------------
+
+  Instance 1:
+    Method: semantic
+    Confidence: 0.606
+    Sentiment: 0.000
+    Text: If you leave me, I'll hurt myself and it will be your fault....
+    Source: test_text_2.txt
+
+  Instance 2:
+    Method: semantic
+    Confidence: 0.661
+    Sentiment: 0.000
+    Text: You can't survive without me....
+    Source: test_text_3.txt
+
+  Instance 3:
+    Method: semantic
+    Confidence: 0.736
+    Sentiment: 0.000
+    Text: You need me to take care of everything....
+    Source: test_text_3.txt
+
+  Instance 4:
+    Method: semantic
+    Confidence: 0.772
+    Sentiment: 0.000
+    Text: Your friends are just trying to turn you against me because they're jealous....
+    Source: test_text_4.txt
+
+  Instance 5:
+    Method: semantic
+    Confidence: 0.615
+    Sentiment: 0.000
+    Text: You made me angry, so I had to yell at you....
+    Source: test_text_6.txt
+
+FINANCIAL CONTROL
+-----------------
+
+  Instance 1:
+    Method: paraphrased
+    Confidence: 0.732
+    Sentiment: 0.000
+    Text: You can't survive without me....
+    Source: test_text_3.txt
+
+  Instance 2:
+    Method: paraphrased
+    Confidence: 0.735
+    Sentiment: 0.000
+    Text: You can't survive without me....
+    Source: test_text_3.txt
+
+  Instance 3:
+    Method: paraphrased
+    Confidence: 0.714
+    Sentiment: 0.000
+    Text: You need me to take care of everything....
+    Source: test_text_3.txt
+
+LOVE BOMBING
+------------
+
+  Instance 1:
+    Method: regex
+    Confidence: 0.800
+    Sentiment: 0.000
+    Text: I love you more than anything....
+    Source: test_text_7.txt
+
+ISOLATION TACTICS
+-----------------
+
+  Instance 1:
+    Method: paraphrased
+    Confidence: 0.752
+    Sentiment: 0.000
+    Text: You're my whole world and I can't live without you....
+    Source: test_text_7.txt
+
+
+RECOMMendations FOR DOCUMENTATION:
+==================================================
+• Document specific dates, times, and witnesses for each incident
+• Track frequency and escalation patterns over time
+• Note the function and payoff of manipulative behaviors
+• Collect third-party corroboration when possible
+• Monitor for retaliation when manipulation tactics are resisted
+• Focus on 2 high-confidence instances for court presentation
