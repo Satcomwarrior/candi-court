@@ -14,6 +14,7 @@ This script is additive and does not change existing imports.
 import argparse
 import sys
 from pathlib import Path
+import subprocess
 
 
 def cmd_nlp(args):
@@ -66,6 +67,30 @@ def cmd_reason(args):
     print("Level:", result.reasonableness_level.name)
 
 
+def cmd_powershell(args):
+    script_path = Path("powershell") / args.script
+    if not script_path.exists():
+        print(f"Script not found: {script_path}", file=sys.stderr)
+        sys.exit(1)
+    # Drop leading '--' in remainder if present
+    psargs = args.psargs
+    if psargs and psargs[0] == "--":
+        psargs = psargs[1:]
+    cmd = [
+        "powershell",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        str(script_path),
+        *psargs,
+    ]
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        sys.exit(e.returncode)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Unified legal automations runner")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -104,6 +129,11 @@ def main():
         sys.argv = ["automate_intake_email.py"] + argv
         intake_main()
     p5.set_defaults(func=_cmd_intake)
+
+    p6 = sub.add_parser("powershell", help="Run a PowerShell script from powershell/")
+    p6.add_argument("script", help="Script filename in powershell/")
+    p6.add_argument("psargs", nargs=argparse.REMAINDER, help="Arguments passed to PowerShell (prefix with --)")
+    p6.set_defaults(func=cmd_powershell)
 
     args = ap.parse_args()
     args.func(args)
