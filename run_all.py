@@ -135,6 +135,20 @@ def main():
     p6.add_argument("psargs", nargs=argparse.REMAINDER, help="Arguments passed to PowerShell (prefix with --)")
     p6.set_defaults(func=cmd_powershell)
 
+    p7 = sub.add_parser("generate-docs", help="Generate Snohomish templates into filled documents")
+    p7.add_argument("--input", required=True, help="Path to case data JSON")
+    p7.add_argument("--output-dir", default=str(Path("outputs") / "generated_docs"))
+    p7.add_argument("--only", nargs="*", choices=["motion", "declaration", "contempt"], help="Limit which docs")
+    def _cmd_gen(ns):
+        from scripts.generate_case_documents import main as gen_main
+        argv = ["--input", ns.input, "--output-dir", ns.output_dir]
+        if ns.only:
+            argv += ["--only", *ns.only]
+        import sys as _sys
+        _sys.argv = ["generate_case_documents.py"] + argv
+        gen_main()
+    p7.set_defaults(func=_cmd_gen)
+
     args = ap.parse_args()
     args.func(args)
 
