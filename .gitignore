@@ -60,11 +60,3 @@ iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6715.MOV
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6721.MOV
 iCloudExtract/iCloud Photos from Blake Voorhees/IMG_6725.MOV
 Unpacking_Irregularities__Washington_State_s_Legal_&_Regulatory_Systems_Under_the_Microscope.m4a
-
-git clone https://github.com/satcomwarrior/candi-court.git
-
-git clone https://github.com/Satcomwarrior/candi-court.git
-cd candi-court
-
-$env:GITHUB_TOKEN = "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"
-python comet_access.py
