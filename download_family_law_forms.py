@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ï»¿#!/usr/bin/env python3
 """
 Enhanced Family Law Forms Downloader for Washington State Courts
 
@@ -97,10 +97,10 @@ class WashingtonFormsDownloader:
                     }
                 )
 
-                print(f"? {form_name} downloaded successfully")
+                print(f"Downloaded: {form_name}")
                 return True
             else:
-                print(f"? {form_name} failed - HTTP {response.status_code}")
+                print(f"Failed: {form_name} - HTTP {response.status_code}")
                 self.download_log.append(
                     {
                         "form_name": form_name,
@@ -114,7 +114,7 @@ class WashingtonFormsDownloader:
                 return False
 
         except Exception as e:
-            print(f"? {form_name} error - {e}")
+            print(f"Error: {form_name} - {e}")
             self.download_log.append(
                 {
                     "form_name": form_name,
@@ -161,7 +161,7 @@ class WashingtonFormsDownloader:
         self._create_declaration_template(snohomish_dir)
         self._create_contempt_motion_template(snohomish_dir)
 
-        print("? Snohomish County templates created")
+        print("Snohomish County templates created")
 
     def _create_motion_template(self, output_dir: Path):
         try:
@@ -275,7 +275,7 @@ class WashingtonFormsDownloader:
 
     def save_download_log(self):
         log_file = self.base_dir / f"download_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        with open(log_file, "w") as f:
+        with open(log_file, "w", encoding="utf-8") as f:
             json.dump(
                 {
                     "download_session": {
@@ -288,7 +288,7 @@ class WashingtonFormsDownloader:
                 f,
                 indent=2,
             )
-        print(f"\n? Download log saved to: {log_file}")
+        print(f"\nDownload log saved to: {log_file}")
 
     def generate_summary_report(self, stats: Dict[str, int]):
         print("\n" + "=" * 60)
@@ -303,7 +303,7 @@ class WashingtonFormsDownloader:
             print("\nFailed downloads:")
             for entry in self.download_log:
                 if entry["status"] in ["failed", "error"]:
-                    print(f"  • {entry['form_name']}: {entry.get('error', 'Unknown error')}")
+                    print(f"  - {entry['form_name']}: {entry.get('error', 'Unknown error')}")
 
 
 def get_available_templates() -> List[Dict[str, str]]:
@@ -331,7 +331,7 @@ def main():
     downloader.create_snohomish_county_templates()
     downloader.save_download_log()
     downloader.generate_summary_report(stats)
-    print("\n? Forms download and template creation completed!")
+    print("\nForms download and template creation completed!")
     print(f"Forms are organized in: {downloader.base_dir}")
 
 
