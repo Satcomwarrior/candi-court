@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: exhibits contempt dvpo f-I cond.pdf
+Size: 8.93 MB
+Date Modified: 07/09/2025 02:31:32
+Path: C:\Users\Muddm\Downloads\MillerBrightwellExtract\exhibits contempt dvpo f-I cond.pdf
+
+EVIDENCE CLASSIFICATION:
+Unknown
+
+LEGAL SIGNIFICANCE:
+Standard Evidence
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: transcript-185a68aa-2f3b-4a8c-99db-2f9078c16271-2025-08-16-17-41-25.PDF
+Size: 0.46 MB
+Date Modified: 08/29/2025 11:15:45
+Path: C:\Users\Muddm\Downloads\transcript-185a68aa-2f3b-4a8c-99db-2f9078c16271-2025-08-16-17-41-25.PDF
+
+EVIDENCE CLASSIFICATION:
+COURT TRANSCRIPT - OFFICIAL RECORD
+
+LEGAL SIGNIFICANCE:
+LEGAL OUTCOME DOCUMENTATION
+
+RECOMMENDED ACTION:
+PROFESSIONAL LEGAL ANALYSIS REQUIRED
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

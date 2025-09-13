@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: exhibits contempt dvpo J-O.pdf
+Size: 7.73 MB
+Date Modified: 07/09/2025 02:31:32
+Path: C:\Users\Muddm\Downloads\MillerBrightwellExtract\exhibits contempt dvpo J-O.pdf
+
+EVIDENCE CLASSIFICATION:
+Unknown
+
+LEGAL SIGNIFICANCE:
+Standard Evidence
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

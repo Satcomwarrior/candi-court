@@ -1,0 +1,36 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: Activities - A list of Google services accessed by.xlsx
+Size: 0.18 MB
+Date Modified: 07/16/2025 15:19:25
+Path: C:\Users\Muddm\Downloads\Activities - A list of Google services accessed by.xlsx
+
+EVIDENCE CLASSIFICATION:
+Unknown
+
+LEGAL SIGNIFICANCE:
+Standard Evidence
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+- FINANCIAL EVIDENCE: Quantifiable theft and abuse documentation
+- Business account exploitation during vulnerable period
+- Corporate position abuse for personal harassment
+- Restitution and criminal charges applicable
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: Declaration_of_William_Miller (4).pdf
+Size: 0 MB
+Date Modified: 08/22/2025 13:43:42
+Path: C:\Users\Muddm\Downloads\Declaration_of_William_Miller (4).pdf
+
+EVIDENCE CLASSIFICATION:
+Unknown
+
+LEGAL SIGNIFICANCE:
+Standard Evidence
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

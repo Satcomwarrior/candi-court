@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: Untitled video.mp4
+Size: 103.15 MB
+Date Modified: 08/06/2025 16:14:11
+Path: C:\Users\Muddm\Downloads\Untitled video.mp4
+
+EVIDENCE CLASSIFICATION:
+VIDEO EVIDENCE
+
+LEGAL SIGNIFICANCE:
+VISUAL DOCUMENTATION OF ABUSE/HARASSMENT
+
+RECOMMENDED ACTION:
+VIDEO ANALYSIS - FRAME EXTRACTION NEEDED
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

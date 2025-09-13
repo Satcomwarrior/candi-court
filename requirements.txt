@@ -1,6 +1,9 @@
 # Core Legal Analysis Dependencies
 python-docx==0.8.11
 
+# AI Studio Integration
+google-genai>=1.33.0
+
 # NLP Analysis Dependencies (for enhanced legal workflow)
 spacy>=3.8.0
 textblob>=0.19.0

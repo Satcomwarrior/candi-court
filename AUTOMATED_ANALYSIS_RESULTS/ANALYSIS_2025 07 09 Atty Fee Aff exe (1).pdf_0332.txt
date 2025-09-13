@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: 2025 07 09 Atty Fee Aff exe (1).pdf
+Size: 0.14 MB
+Date Modified: 07/09/2025 13:16:15
+Path: C:\Users\Muddm\Downloads\2025 07 09 Atty Fee Aff exe (1).pdf
+
+EVIDENCE CLASSIFICATION:
+SMOKING GUN
+
+LEGAL SIGNIFICANCE:
+VITAL
+
+RECOMMENDED ACTION:
+File for evidence
+
+AUTOMATED ANALYSIS NOTES:
+
+CONFESSION OF FACILITATION OF TRESSPASS
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

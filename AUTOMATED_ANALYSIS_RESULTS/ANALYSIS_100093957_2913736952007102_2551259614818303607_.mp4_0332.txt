@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: 100093957_2913736952007102_2551259614818303607_.mp4
+Size: 4.77 MB
+Date Modified: 07/12/2025 03:07:34
+Path: C:\Users\Muddm\Downloads\Phone Link\Takeout\Drive\transfer-2024-02-07-09-49-37\facebook-100009222391809-2024-02-07-m9baoAD7\your_activity_across_facebook\messages\inbox\jrlien_3370155636635150\videos\100093957_2913736952007102_2551259614818303607_.mp4
+
+EVIDENCE CLASSIFICATION:
+VIDEO EVIDENCE
+
+LEGAL SIGNIFICANCE:
+VISUAL DOCUMENTATION OF ABUSE/HARASSMENT
+
+RECOMMENDED ACTION:
+VIDEO ANALYSIS - FRAME EXTRACTION NEEDED
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

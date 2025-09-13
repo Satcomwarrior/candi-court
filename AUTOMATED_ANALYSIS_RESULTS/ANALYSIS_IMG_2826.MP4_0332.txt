@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: IMG_2826.MP4
+Size: 2.08 MB
+Date Modified: 07/12/2025 03:11:04
+Path: C:\Users\Muddm\Downloads\Phone Link\Takeout\Google Photos\Photos from 2020\IMG_2826.MP4
+
+EVIDENCE CLASSIFICATION:
+VIDEO EVIDENCE
+
+LEGAL SIGNIFICANCE:
+VISUAL DOCUMENTATION OF ABUSE/HARASSMENT
+
+RECOMMENDED ACTION:
+VIDEO ANALYSIS - FRAME EXTRACTION NEEDED
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+

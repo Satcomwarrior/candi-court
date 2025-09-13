@@ -1,0 +1,33 @@
+==================================================
+FILE ANALYSIS REPORT
+==================================================
+File: IMG_2948.MP4
+Size: 1.72 MB
+Date Modified: 07/12/2025 03:10:59
+Path: C:\Users\Muddm\Downloads\Phone Link\Takeout\Google Photos\Photos from 2020\IMG_2948.MP4
+
+EVIDENCE CLASSIFICATION:
+VIDEO EVIDENCE
+
+LEGAL SIGNIFICANCE:
+VISUAL DOCUMENTATION OF ABUSE/HARASSMENT
+
+RECOMMENDED ACTION:
+VIDEO ANALYSIS - FRAME EXTRACTION NEEDED
+
+AUTOMATED ANALYSIS NOTES:
+
+
+
+
+
+
+
+
+
+
+PROCESSING STATUS: AUTOMATICALLY ANALYZED
+NEXT STEP: COMPILE FOR LEGAL REVIEW
+
+==================================================
+
