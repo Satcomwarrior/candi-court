@@ -149,6 +149,82 @@ def main():
         gen_main()
     p7.set_defaults(func=_cmd_gen)
 
+    p8 = sub.add_parser("full", help="Run the full workflow end-to-end")
+    p8.add_argument("--case-data", default=str(Path("case_data.sample.json")), help="Path to case data JSON")
+    p8.add_argument("--output-dir", default=str(Path("outputs") / "generated_docs"))
+    p8.add_argument("--send-intake", action="store_true", help="Actually send intake emails (omit for dry-run)")
+    p8.add_argument("--ps-script", help="Optional PowerShell script from powershell/ to run at the end")
+    p8.add_argument("--psargs", nargs=argparse.REMAINDER, help="Args passed to the PowerShell script (prefix with --)")
+
+    def _cmd_full(ns):
+        # 1) Forms + templates (skip if Snohomish templates already exist)
+        try:
+            snohomish_dir = Path("templates/family_law_forms/snohomish_county")
+            required = [
+                snohomish_dir / "snohomish_motion_template.docx",
+                snohomish_dir / "snohomish_declaration_template.docx",
+                snohomish_dir / "snohomish_contempt_motion_template.docx",
+            ]
+            def _valid(p: Path) -> bool:
+                return p.exists() and p.stat().st_size > 1024
+            if all(_valid(p) for p in required):
+                print("[INFO] Templates already present; skipping forms download.")
+            else:
+                try:
+                    # Try regenerating templates only (cheap)
+                    from download_family_law_forms import WashingtonFormsDownloader
+                    dl = WashingtonFormsDownloader()
+                    dl.create_snohomish_county_templates()
+                    print("[INFO] Recreated Snohomish templates.")
+                except Exception:
+                    # As a fallback, attempt full forms download if space permits
+                    from download_family_law_forms import WashingtonFormsDownloader
+                    dl = WashingtonFormsDownloader()
+                    stats = dl.download_all_forms()
+                    dl.create_snohomish_county_templates()
+                    dl.save_download_log()
+                    dl.generate_summary_report(stats)
+        except Exception as e:
+            print(f"[WARN] Forms step failed: {e}")
+
+        # 2) Generate documents
+        try:
+            from scripts.generate_case_documents import main as gen_main
+            argv = ["--input", ns.case_data, "--output-dir", ns.output_dir]
+            import sys as _sys
+            _sys.argv = ["generate_case_documents.py"] + argv
+            gen_main()
+        except Exception as e:
+            print(f"[WARN] Document generation failed: {e}")
+
+        # 3) Intake email (dry-run unless flagged)
+        try:
+            body_path = Path("intake_email_draft.txt")
+            if not body_path.exists():
+                print("[INFO] Skipping intake email: intake_email_draft.txt not found.")
+            else:
+                from automation.automate_intake_email import main as intake_main
+                argv = ["--body", str(body_path)]
+                if not ns.send_intake:
+                    argv.append("--dry-run")
+                import sys as _sys
+                _sys.argv = ["automate_intake_email.py"] + argv
+                intake_main()
+        except Exception as e:
+            print(f"[WARN] Intake email step failed: {e}")
+
+        # 4) Optional PowerShell orchestrator
+        if ns.ps_script:
+            try:
+                _args = argparse.Namespace(script=ns.ps_script, psargs=ns.psargs or [])
+                cmd_powershell(_args)
+            except SystemExit as se:
+                raise
+            except Exception as e:
+                print(f"[WARN] PowerShell step failed: {e}")
+
+    p8.set_defaults(func=_cmd_full)
+
     args = ap.parse_args()
     args.func(args)
 
