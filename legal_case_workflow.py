@@ -1,13 +1,10 @@
-﻿# FULL AUTOMATED LEGAL CASE WORKFLOW SCRIPT
+# FULL AUTOMATED LEGAL CASE WORKFLOW SCRIPT
 # Author: William Miller
 # Date: 09/07/2025
-
 import os
 import json
 from typing import List, Dict, Any
-
 from docx import Document
-
 # Optional NLP imports
 try:
     import spacy  # type: ignore
@@ -20,15 +17,11 @@ try:
 except Exception:
     spacy = None  # type: ignore
     _NLP = None
-
 try:
     from textblob import TextBlob  # type: ignore
 except Exception:
     TextBlob = None  # type: ignore
-
-
 # === STEP 1: DOCUMENT GENERATION ===
-
 def generate_legal_document(template_path: str, case_data: Dict[str, Any], output_path: str) -> str:
     """Generate a legal document from a Word template by replacing placeholders."""
     doc = Document(template_path)
@@ -40,10 +33,7 @@ def generate_legal_document(template_path: str, case_data: Dict[str, Any], outpu
     doc.save(output_path)
     print(f"[INFO] Generated legal document saved at {output_path}")
     return output_path
-
-
 # === STEP 2: ENHANCED COMMUNICATIONS ANALYSIS (AI) ===
-
 def analyze_communications_via_ai(text: str) -> str:
     """Enhanced analysis using Google AI Studio if available, with safe fallback."""
     prompt = (
@@ -60,13 +50,9 @@ def analyze_communications_via_ai(text: str) -> str:
             "[AI Fallback] Possible coercive control language identified. Consider documenting instances, "
             "obtaining corroboration, and preparing exhibits for court review."
         )
-
-
 # === NLP utilities (for tests and offline analysis) ===
-
 def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
     """Pure-NLP analysis of communications for tests and offline use.
-
     Returns a dict with keys: sentiment, coercive_patterns, psychological_indicators,
     linguistic_patterns, entities, summary.
     """
@@ -78,7 +64,6 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
         "entities": [],
         "summary": "",
     }
-
     # Sentiment via TextBlob if available
     if TextBlob is not None:
         blob = TextBlob(text)
@@ -101,10 +86,8 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
             "subjectivity": 0.0,
             "interpretation": "neutral sentiment, objective tone",
         }
-
     # spaCy-based analysis if model available
     doc = _NLP(text) if _NLP else None
-
     # Entities
     if doc is not None:
         entities: List[Dict[str, str]] = []
@@ -117,7 +100,6 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
         result["entities"] = entities
     else:
         result["entities"] = []
-
     # Linguistic patterns and coercive pattern detection
     text_lower = text.lower()
     patterns = {
@@ -139,13 +121,18 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
                     patterns["personal_pronouns"]["second"] += 1
                 else:
                     patterns["personal_pronouns"]["third"] += 1
+            # BUG FIX: Replace token.sentiment with TextBlob sentiment analysis
+            # spaCy tokens don't have sentiment attribute, use TextBlob instead
             try:
-                if getattr(token, "sentiment", 0) < 0:
-                    patterns["negative_words"] += 1
+                # Remove the problematic token.sentiment code
+                # Use TextBlob for negative word detection instead
+                if TextBlob is not None:
+                    token_blob = TextBlob(token.text)
+                    if token_blob.sentiment.polarity < -0.1:
+                        patterns["negative_words"] += 1
             except Exception:
                 pass
     result["linguistic_patterns"] = patterns
-
     categories = [
         ("control", [
             "you can't", "you won't", "you're not allowed", "i forbid",
@@ -169,7 +156,6 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
         if found:
             detected.append({"category": cat, "phrases": found, "severity": len(found)})
     result["coercive_patterns"] = detected
-
     # Psychological indicators (simple heuristics)
     indicators: List[Dict[str, Any]] = []
     heuristics = {
@@ -182,7 +168,6 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
         if count:
             indicators.append({"type": name, "count": count})
     result["psychological_indicators"] = indicators
-
     # Summary
     parts: List[str] = []
     if detected:
@@ -192,13 +177,9 @@ def analyze_communication_patterns_nlp(text: str) -> Dict[str, Any]:
     if not parts:
         parts.append("no strong coercive indicators detected")
     result["summary"] = "; ".join(parts)
-
     return result
-
-
 def analyze_document_structure(doc_path: str) -> Dict[str, Any]:
     """Wrapper to analyze document structure using LegalDocumentAnalyzer.
-
     Returns only the structure portion for convenience.
     """
     try:
