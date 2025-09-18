@@ -1,0 +1,10 @@
+# Development and Testing Dependencies
+-r requirements.txt
+
+pytest>=8.3.0
+pytest-cov>=5.0.0
+
+# Optional ML stack for advanced detectors
+transformers>=4.56.0
+torch>=2.8.0
+

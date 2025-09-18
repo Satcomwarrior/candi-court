@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<nvi title="Visual Studio Integration" disposition="default" versionText="12.9" timestamp="2025-05-31T14:40:42.000" name="visual_studio_integration_12.9" version="12.9">
+  <description>
+    
+  </description>
+  <constraints>
+    <reject tests="SAFEMODE" when="install" errorCode="0" level="silent" name="" text="CUDA Visual Studio Integration installation is not supported while in safe mode." />
+  </constraints>
+  <interfaces />
+  <dependencies>
+    <package package="CUDAVisualStudioIntegration_12.9" when="always" type="uninstalls" />
+  </dependencies>
+  <extensions>
+    <extension file=".\CUDAVisualStudioIntegrationExt.DLL" />
+  </extensions>
+  <properties>
+    <bool value="false" name="IsBareSubpackage" />
+    <bool value="false" name="HasDriver" />
+    <int value="-1" name="DiskSpaceForBare" />
+    <bool value="false" name="HasVSFullInstalled" />
+    <string value="C:\Users\Muddm\AppData\Local\Temp\cuda\visual_studio_integration\CUDAVisualStudioIntegration" name="SubPackageDirectory" />
+    <string value="" name="VS2013InstallDir" />
+    <string value="Visual Studio Integration" name="Title" />
+    <bool value="false" name="PostInstallCustomForm" />
+    <string value="12.9" name="DisplayVersion" />
+    <string value="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9" name="InstallLocation" />
+    <bool value="false" name="VS2012Exists" />
+    <bool value="false" name="VS2013Exists" />
+    <bool value="true" name="PreInstallCustomForm" />
+    <bool value="false" name="ContinueOnFailure" />
+    <string value="" name="VS2012InstallDir" />
+    <bool value="false" name="VS2015Exists" />
+    <string value="C:\Program Files (x86)\NVIDIA Corporation\NVIDIA Corporation\Nsight Visual Studio Edition 12.9.79" name="NsightInstallLocation" />
+    <bool value="false" name="AllowsCustomPath" />
+    <string value="" name="VS2015InstallDir" />
+    <int value="-1" name="DownloadSizeForBareMB" />
+    <string value="NVIDIA CUDA Visual Studio Integration 12.9" name="ArpDisplayName" />
+    <string value="12.9.79" name="NsightVersion" />
+    <string value="*Nsight*.msi" name="NsightMSI" />
+    <bool value="false" name="NoArp" />
+    <string value="" name="Description" />
+    <int value="-1" name="AdditionalSpaceRequired" />
+  </properties>
+  <manifest>
+    <file name=".\CUDAVisualStudioIntegration.nvi" />
+    <file name=".\CUDAVisualStudioIntegrationExt.dll" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\extension.vsixmanifest" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\CUDA.vstman" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CUDA.vstdir" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.ico" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.vstemplate" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\File.cu" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.ico" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.vstemplate" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\Header.cuh" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\Nvda.Vsip.CudaTemplates.dll" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\Nvda.Vsip.CudaTemplates.pkgdef" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\CUDA 12.9 Runtime.ico" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\CUDA 12.9 Runtime.vstemplate" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\kernel.cu" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\Project.filters" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\Project.template" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\extension.vsixmanifest" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\CUDA.vstman" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CUDA.vstdir" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.ico" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.vstemplate" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\File.cu" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.ico" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.vstemplate" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\Header.cuh" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\Nvda.Vsip.CudaTemplates.dll" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\Nvda.Vsip.CudaTemplates.pkgdef" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\CUDA 12.9 Runtime.ico" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\CUDA 12.9 Runtime.vstemplate" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\kernel.cu" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\Project.filters" />
+    <file name=".\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\Project.template" />
+    <file name=".\extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.props" />
+    <file name=".\extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.targets" />
+    <file name=".\extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.xml" />
+    <file name=".\extras\visual_studio_integration\MSBuildExtensions\Nvda.Build.CudaTasks.v12.9.dll" />
+  </manifest>
+  <phases>
+    <custom phase="detectMSBuild" action="DetectMSBuild" progress="0" when="uninstall">
+      <properties />
+    </custom>
+    <custom phase="detectVS" action="DetectVS" progress="0" when="uninstall">
+      <properties />
+    </custom>
+    <standard phase="copyFiles" when="uninstall">
+      <deleteFile target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations\Nvda.Build.CudaTasks.v12.9.dll" />
+      <deleteFile target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations\CUDA 12.9.xml" />
+      <deleteFile target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations\CUDA 12.9.targets" />
+      <deleteFile target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations\CUDA 12.9.props" />
+      <deleteDirectory target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations" />
+      <deleteDirectory target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0" />
+      <deleteDirectory target="C:\Program Files (x86)\MSBuild\Microsoft.Cpp" />
+      <deleteDirectory target="C:\Program Files (x86)\MSBuild" />
+      <deleteFile target="extras\visual_studio_integration\MSBuildExtensions\Nvda.Build.CudaTasks.v12.9.dll" />
+      <deleteFile target="extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.xml" />
+      <deleteFile target="extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.targets" />
+      <deleteFile target="extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.props" />
+      <deleteDirectory target="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9\extras\visual_studio_integration\MSBuildExtensions" />
+      <deleteDirectory target="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9\extras\visual_studio_integration" />
+      <deleteDirectory target="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9\extras" />
+    </standard>
+    <standard phase="installVSWizards" when="uninstall">
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\Project.template" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\Project.filters" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\kernel.cu" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\CUDA 12.9 Runtime.vstemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates\CUDA 12.9 Runtime.ico" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ProjectTemplates" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\Nvda.Vsip.CudaTemplates.pkgdef" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\Nvda.Vsip.CudaTemplates.dll" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\Header.cuh" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.vstemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.ico" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\File.cu" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.vstemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.ico" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9\CUDA.vstdir" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC\CUDA 12.9" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\VC" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates\CUDA.vstman" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\ItemTemplates" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17\extension.vsixmanifest" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\17" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\Project.template" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\Project.filters" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\kernel.cu" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\CUDA 12.9 Runtime.vstemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates\CUDA 12.9 Runtime.ico" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ProjectTemplates" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\Nvda.Vsip.CudaTemplates.pkgdef" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\Nvda.Vsip.CudaTemplates.dll" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\Header.cuh" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.vstemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate\CUDA Header.ico" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaHeaderTemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\File.cu" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.vstemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate\CUDA File.ico" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CudaFileTemplate" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9\CUDA.vstdir" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC\CUDA 12.9" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\VC" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates\CUDA.vstman" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\ItemTemplates" />
+      <deleteFile target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16\extension.vsixmanifest" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards\16" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration\CudaProjectVsWizards" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras\visual_studio_integration" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9\extras" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit\v12.9" />
+      <deleteDirectory target="C:\ProgramData\NVIDIA GPU Computing Toolkit" />
+    </standard>
+    <standard phase="deleteVSShortcuts" when="uninstall">
+      <deleteDirectoryTree target="${{@VS2012InstallDir}}\Extensions\NVIDIA\CUDA 12.9 Wizards" />
+      <deleteDirectoryTree target="${{@VS2013InstallDir}}\Extensions\NVIDIA\CUDA 12.9 Wizards" />
+      <deleteDirectoryTree target="${{@VS2015InstallDir}}\Extensions\NVIDIA\CUDA 12.9 Wizards" />
+    </standard>
+    <standard phase="deleteExtras" when="uninstall">
+      <deleteDirectory target="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9\extras" />
+    </standard>
+    <custom uninstallText="Configuring Visual Studio settings" phase="VSModernDevenvUninstall" action="ModernDevenvUninstall" progress="0" when="uninstall">
+      <properties>
+        <string value="extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.props;extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.targets;extras\visual_studio_integration\MSBuildExtensions\CUDA 12.9.xml;extras\visual_studio_integration\MSBuildExtensions\Nvda.Build.CudaTasks.v12.9.dll;" name="msBuildFiles" />
+        <string value="\Common7\IDE\Extensions\NVIDIA\CUDA 12.9 Wizards\" name="vsWizardDir" />
+        <string value="\Common7\IDE\Extensions\NVIDIA\CUDA 12.9 Wizards\12.9\" name="vsWizardShortcutDir" />
+      </properties>
+    </custom>
+  </phases>
+</nvi>

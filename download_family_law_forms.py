@@ -1,142 +1,339 @@
-import requests
+﻿#!/usr/bin/env python3
+"""
+Enhanced Family Law Forms Downloader for Washington State Courts
+
+Automates the download of official blank legal forms and templates from:
+- Washington Courts Forms Library
+- Washington Law Help Form Library
+- Snohomish County Superior Court specific forms
+
+Ensures compliance with Snohomish County Superior Court rules and formatting.
+"""
+
 import os
+import json
+import time
+from datetime import datetime
 from pathlib import Path
+from typing import Dict, List, Tuple
 
-def download_family_law_forms():
-    """
-    Download official family law forms from Washington Courts, Snohomish County, and Law Help resources.
-    Enhanced to include comprehensive templates for family law cases.
-    """
-    # Use relative path from repository root
-    forms_dir = Path("templates/family_law_forms")
-    forms_dir.mkdir(parents=True, exist_ok=True)
+import requests
 
-    # Comprehensive list of WA family law forms for committed intimate relationships, 
-    # domestic violence, contempt, and property disputes
-    wa_court_forms = [
-        # Domestic Violence Protection Orders
-        ("FL DVPO 001", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20001%20Petition%20for%20Protection%20Order_2020%2006.docx"),
-        ("FL DVPO 002", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20002%20Confidential%20Info%20Form_2020%2006.docx"),
-        ("FL DVPO 003", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20003%20Notice%20of%20Hearing%20Protection%20Order_2020%2006.docx"),
-        ("FL DVPO 004", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20004%20Temporary%20Protection%20Order_2021%2007.docx"),
-        ("FL DVPO 005", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20005%20Full%20Protection%20Order_2021%2007.docx"),
 
-        # Anti-Harassment and No Contact Orders  
-        ("FL AHPO 001", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20011%20Petition%20for%20Anti-Harassment%20Protection%20Order_2020%2006.docx"),
-        ("FL AHPO 004", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20014%20Temporary%20Anti-Harassment%20Protection%20Order_2020%2006.docx"),
-        ("FL AHPO 005", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20015%20Full%20Anti-Harassment%20Protection%20Order_2020%2006.docx"),
+class WashingtonFormsDownloader:
+    """Enhanced downloader for Washington State legal forms."""
 
-        # Contempt and Motion Forms
-        ("FL Contempt 151", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20151%20Motion%20and%20Declaration%20for%20Order%20to%20Show%20Cause%20Re%20Contempt%20and%20Other%20Relief_2020%2006.docx"),
-        ("FL Contempt 152", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20152%20Notice%20of%20Hearing%20Re%20Contempt_2020%2006.docx"),
-        ("FL Contempt 161", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20161%20Order%20on%20Motion%20for%20Contempt_2020%2006.docx"),
+    def __init__(self, base_dir: str = None):
+        if base_dir is None:
+            base_dir = os.path.join(os.getcwd(), "templates", "family_law_forms")
 
-        # Committed Intimate Relationship (CIR) Forms
-        ("FL CIR 401", "https://www.courts.wa.gov/forms/docs/FL%20Parentage%20401%20Petition%20to%20Establish%20Parentage_2020%2006.docx"),
-        ("FL CIR 402", "https://www.courts.wa.gov/forms/docs/FL%20Parentage%20402%20Response%20to%20Petition%20Parentage_2020%2006.docx"),
+        self.base_dir = Path(base_dir)
+        self.base_dir.mkdir(parents=True, exist_ok=True)
 
-        # Property and Financial Forms
-        ("FL Property 171", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20171%20Motion%20for%20Temporary%20Family%20Law%20Order_2020%2006.docx"),
-        ("FL Property 172", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20172%20Declaration%20in%20Support%20of%20Motion%20for%20Temporary%20Order_2020%2006.docx"),
-        ("FL Property 181", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20181%20Temporary%20Family%20Law%20Order_2020%2006.docx"),
+        # Washington Courts base URLs
+        self.wa_courts_base = "https://www.courts.wa.gov/forms/docs/"
+        self.wa_law_help_base = "https://www.washingtonlawhelp.org/"
 
-        # Motion and Declaration Forms
-        ("FL Motion 131", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20131%20Motion%20and%20Declaration%20for%20Temporary%20Order_2020%2006.docx"),
-        ("FL Motion 135", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20135%20Response%20to%20Motion%20for%20Temporary%20Order_2020%2006.docx"),
+        # Session for connection reuse
+        self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        })
 
-        # Service and Notice Forms
-        ("FL Service 101", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20101%20Proof%20of%20Personal%20Service_2020%2006.docx"),
-        ("FL Service 102", "https://www.courts.wa.gov/forms/docs/FL%20All%20Family%20102%20Proof%20of%20Mailing_2020%2006.docx"),
+        # Download log
+        self.download_log: List[Dict[str, str]] = []
 
-        # UCCJEA Forms (for cases involving children)
-        ("FL UCCJEA 801", "https://www.courts.wa.gov/forms/docs/FL_UCCJEA_801.doc"),
-        ("FL UCCJEA 802", "https://www.courts.wa.gov/forms/docs/FL_UCCJEA_802.doc"),
-        ("FL UCCJEA 803", "https://www.courts.wa.gov/forms/docs/FL_UCCJEA_803.doc"),
-    ]
+    def get_family_law_forms_list(self) -> Dict[str, List[Tuple[str, str]]]:
+        """Get comprehensive list of family law forms to download."""
+        return {
+            "uccjea_forms": [
+                ("FL UCCJEA 801", "FL_UCCJEA_801.doc"),
+                ("FL UCCJEA 802", "FL_UCCJEA_802.doc"),
+                ("FL UCCJEA 803", "FL_UCCJEA_803.doc"),
+                ("FL UCCJEA 804", "FL_UCCJEA_804.doc"),
+            ],
+            "protection_orders": [
+                ("FL All Family 160", "FL_All_Family_160.doc"),
+                ("FL All Family 161", "FL_All_Family_161.doc"),
+                ("FL All Family 166", "FL_All_Family_166.doc"),
+                ("FL All Family 167", "FL_All_Family_167.doc"),
+            ],
+            "service_forms": [
+                ("FL All Family 101", "FL_All_Family_101_Proof_of_Personal_Service.doc"),
+                ("FL All Family 102", "FL_All_Family_102_Return_of_Service.doc"),
+            ],
+            "motions_orders": [
+                ("FL All Family 135", "FL_All_Family_135.doc"),
+                ("FL All Family 140", "FL_All_Family_140.doc"),
+            ],
+        }
 
-    # Download WA Court forms
-    print("[INFO] Downloading Washington State Court Forms...")
-    downloaded_count = 0
-    failed_count = 0
-    
-    for form_name, url in wa_court_forms:
+    def download_form(self, form_name: str, filename: str, category: str = "general") -> bool:
+        """Download a single form with error handling and logging."""
+        url = self.wa_courts_base + filename
+        category_dir = self.base_dir / category
+        category_dir.mkdir(exist_ok=True)
+
+        local_filename = filename.replace(".doc", f"_{datetime.now().strftime('%Y%m%d')}.doc")
+        filepath = category_dir / local_filename
+
         try:
-            response = requests.get(url, timeout=30)
+            print(f"Downloading {form_name}...")
+            response = self.session.get(url, timeout=30)
+
             if response.status_code == 200:
-                # Determine file extension from URL or content-type
-                if url.endswith('.docx'):
-                    filename = f"{form_name.replace(' ', '_')}.docx"
-                elif url.endswith('.doc'):
-                    filename = f"{form_name.replace(' ', '_')}.doc"
-                elif url.endswith('.pdf'):
-                    filename = f"{form_name.replace(' ', '_')}.pdf"
-                else:
-                    filename = f"{form_name.replace(' ', '_')}.docx"  # Default to docx
-                
-                filepath = forms_dir / filename
-                with open(filepath, 'wb') as f:
+                with open(filepath, "wb") as f:
                     f.write(response.content)
-                print(f"[DOWNLOADED] {form_name} -> {filepath}")
-                downloaded_count += 1
+
+                self.download_log.append(
+                    {
+                        "form_name": form_name,
+                        "filename": filename,
+                        "local_path": str(filepath),
+                        "category": category,
+                        "status": "success",
+                        "timestamp": datetime.now().isoformat(),
+                        "size_bytes": str(len(response.content)),
+                    }
+                )
+
+                print(f"Downloaded: {form_name}")
+                return True
             else:
-                print(f"[FAILED] {form_name} - Status: {response.status_code}")
-                failed_count += 1
+                print(f"Failed: {form_name} - HTTP {response.status_code}")
+                self.download_log.append(
+                    {
+                        "form_name": form_name,
+                        "filename": filename,
+                        "category": category,
+                        "status": "failed",
+                        "error": f"HTTP {response.status_code}",
+                        "timestamp": datetime.now().isoformat(),
+                    }
+                )
+                return False
+
         except Exception as e:
-            print(f"[ERROR] {form_name} - {e}")
-            failed_count += 1
+            print(f"Error: {form_name} - {e}")
+            self.download_log.append(
+                {
+                    "form_name": form_name,
+                    "filename": filename,
+                    "category": category,
+                    "status": "error",
+                    "error": str(e),
+                    "timestamp": datetime.now().isoformat(),
+                }
+            )
+            return False
 
-    # Create a catalog of downloaded forms
-    catalog_file = forms_dir / "form_catalog.txt"
-    with open(catalog_file, 'w') as f:
-        f.write("# Washington State Family Law Forms Catalog\n")
-        f.write("# Downloaded for automated legal case workflow\n\n")
-        f.write("## Domestic Violence Protection Orders\n")
-        f.write("- FL DVPO 001: Petition for Protection Order\n")
-        f.write("- FL DVPO 002: Confidential Information Form\n")
-        f.write("- FL DVPO 003: Notice of Hearing Protection Order\n")
-        f.write("- FL DVPO 004: Temporary Protection Order\n")
-        f.write("- FL DVPO 005: Full Protection Order\n\n")
-        
-        f.write("## Anti-Harassment Protection Orders\n") 
-        f.write("- FL AHPO 001: Petition for Anti-Harassment Protection Order\n")
-        f.write("- FL AHPO 004: Temporary Anti-Harassment Protection Order\n")
-        f.write("- FL AHPO 005: Full Anti-Harassment Protection Order\n\n")
-        
-        f.write("## Contempt and Motion Forms\n")
-        f.write("- FL Contempt 151: Motion and Declaration for Order to Show Cause Re Contempt\n")
-        f.write("- FL Contempt 152: Notice of Hearing Re Contempt\n")
-        f.write("- FL Contempt 161: Order on Motion for Contempt\n\n")
-        
-        f.write("## Property and Financial Forms\n")
-        f.write("- FL Property 171: Motion for Temporary Family Law Order\n")
-        f.write("- FL Property 172: Declaration in Support of Motion for Temporary Order\n")
-        f.write("- FL Property 181: Temporary Family Law Order\n\n")
-        
-        f.write("## Service and Proof Forms\n")
-        f.write("- FL Service 101: Proof of Personal Service\n")
-        f.write("- FL Service 102: Proof of Mailing\n\n")
+    def download_all_forms(self) -> Dict[str, int]:
+        """Download all family law forms organized by category."""
+        forms_list = self.get_family_law_forms_list()
+        stats = {"total": 0, "successful": 0, "failed": 0}
 
-    print(f"\n[COMPLETE] Downloaded {downloaded_count} forms, {failed_count} failed")
-    print(f"[COMPLETE] Forms saved to: {forms_dir}")
-    print(f"[COMPLETE] Form catalog created: {catalog_file}")
+        print("Starting download of Washington State Family Law Forms...")
+        print(f"Download directory: {self.base_dir}")
+        print("=" * 60)
 
-def get_available_templates():
-    """
-    Return a list of available template files for use in document generation.
-    """
+        for category, forms in forms_list.items():
+            print(f"\nDownloading {category.replace('_', ' ').title()} forms:")
+            print("-" * 40)
+
+            for form_name, filename in forms:
+                stats["total"] += 1
+                if self.download_form(form_name, filename, category):
+                    stats["successful"] += 1
+                else:
+                    stats["failed"] += 1
+                time.sleep(0.5)
+
+        return stats
+
+    def create_snohomish_county_templates(self):
+        """Create Snohomish County specific templates with proper formatting."""
+        print("\nCreating Snohomish County specific templates...")
+
+        snohomish_dir = self.base_dir / "snohomish_county"
+        snohomish_dir.mkdir(exist_ok=True)
+
+        self._create_motion_template(snohomish_dir)
+        self._create_declaration_template(snohomish_dir)
+        self._create_contempt_motion_template(snohomish_dir)
+
+        print("Snohomish County templates created")
+
+    def _create_motion_template(self, output_dir: Path):
+        try:
+            from docx import Document
+            from docx.shared import Inches
+            from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+            doc = Document()
+            for section in doc.sections:
+                section.top_margin = Inches(1)
+                section.bottom_margin = Inches(1)
+                section.left_margin = Inches(1)
+                section.right_margin = Inches(1)
+
+            header = doc.add_paragraph()
+            header.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            header.add_run("SUPERIOR COURT OF WASHINGTON FOR SNOHOMISH COUNTY").bold = True
+
+            doc.add_paragraph()
+
+            case_table = doc.add_table(rows=3, cols=2)
+            case_table.style = "Table Grid"
+            case_table.cell(0, 0).text = "In re: {{petitioner_name}} and {{respondent_name}}"
+            case_table.cell(1, 0).text = "Petitioner and Respondent"
+            case_table.cell(2, 0).text = ""
+            case_table.cell(0, 1).text = "Case No. {{case_number}}"
+            case_table.cell(1, 1).text = "MOTION FOR {{relief_requested}}"
+            case_table.cell(2, 1).text = "Note on Motion Docket: {{hearing_date}}"
+
+            doc.add_paragraph()
+            doc.add_paragraph("TO THE HONORABLE COURT:")
+            doc.add_paragraph()
+
+            doc.add_heading("I. INTRODUCTION", level=2)
+            doc.add_paragraph("{{introduction_paragraph}}")
+
+            doc.add_heading("II. STATEMENT OF FACTS", level=2)
+            doc.add_paragraph("{{facts_section}}")
+
+            doc.add_heading("III. LEGAL ARGUMENT", level=2)
+            doc.add_paragraph("{{legal_arguments}}")
+
+            doc.add_heading("IV. CONCLUSION", level=2)
+            doc.add_paragraph("{{conclusion_paragraph}}")
+
+            doc.add_paragraph()
+            doc.add_paragraph("Respectfully submitted,")
+            doc.add_paragraph()
+            doc.add_paragraph("_________________________________")
+            doc.add_paragraph("{{your_name}}")
+            doc.add_paragraph("Pro Se {{party_designation}}")
+            doc.add_paragraph("{{your_address}}")
+            doc.add_paragraph("{{your_city_state_zip}}")
+            doc.add_paragraph("Phone: {{your_phone}}")
+            doc.add_paragraph("Email: {{your_email}}")
+
+            template_path = output_dir / "snohomish_motion_template.docx"
+            doc.save(template_path)
+        except ImportError:
+            print("Warning: python-docx not available for template creation")
+
+    def _create_declaration_template(self, output_dir: Path):
+        try:
+            from docx import Document
+
+            doc = Document()
+            title = doc.add_heading("DECLARATION OF {{declarant_name}}", 0)
+            title.alignment = 1
+            doc.add_paragraph()
+            doc.add_paragraph("I, {{declarant_name}}, declare as follows:")
+            doc.add_paragraph()
+            for i in range(1, 11):
+                doc.add_paragraph(f"{i}. {{declaration_paragraph_{i}}}")
+            doc.add_paragraph()
+            doc.add_paragraph(
+                "I declare under penalty of perjury under the laws of the State of Washington that the foregoing is true and correct."
+            )
+            doc.add_paragraph()
+            doc.add_paragraph("DATED this _____ day of _____________, 2025.")
+            doc.add_paragraph()
+            doc.add_paragraph("_________________________________")
+            doc.add_paragraph("{{declarant_name}}")
+            template_path = output_dir / "snohomish_declaration_template.docx"
+            doc.save(template_path)
+        except ImportError:
+            pass
+
+    def _create_contempt_motion_template(self, output_dir: Path):
+        try:
+            from docx import Document
+
+            doc = Document()
+            title = doc.add_heading("MOTION FOR ORDER TO SHOW CAUSE FOR CONTEMPT", 0)
+            title.alignment = 1
+            doc.add_paragraph("TO THE HONORABLE COURT:")
+            doc.add_paragraph()
+            doc.add_paragraph(
+                "Petitioner moves this Court for an Order directing Respondent to show cause why Respondent should not be held in contempt for violation of the Court's orders, and states:"
+            )
+            doc.add_paragraph()
+            doc.add_heading("I. BACKGROUND", level=2)
+            doc.add_paragraph("{{background_facts}}")
+            doc.add_heading("II. VIOLATIONS", level=2)
+            doc.add_paragraph("{{violation_details}}")
+            doc.add_heading("III. RELIEF REQUESTED", level=2)
+            doc.add_paragraph("{{relief_requested}}")
+            template_path = output_dir / "snohomish_contempt_motion_template.docx"
+            doc.save(template_path)
+        except ImportError:
+            pass
+
+    def save_download_log(self):
+        log_file = self.base_dir / f"download_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        with open(log_file, "w", encoding="utf-8") as f:
+            json.dump(
+                {
+                    "download_session": {
+                        "timestamp": datetime.now().isoformat(),
+                        "total_downloads": len(self.download_log),
+                        "base_directory": str(self.base_dir),
+                    },
+                    "downloads": self.download_log,
+                },
+                f,
+                indent=2,
+            )
+        print(f"\nDownload log saved to: {log_file}")
+
+    def generate_summary_report(self, stats: Dict[str, int]):
+        print("\n" + "=" * 60)
+        print("DOWNLOAD SUMMARY REPORT")
+        print("=" * 60)
+        print(f"Total forms attempted: {stats['total']}")
+        print(f"Successfully downloaded: {stats['successful']}")
+        print(f"Failed downloads: {stats['failed']}")
+        print(f"Success rate: {(stats['successful'] / stats['total'] * 100):.1f}%")
+        print(f"Download directory: {self.base_dir}")
+        if stats["failed"] > 0:
+            print("\nFailed downloads:")
+            for entry in self.download_log:
+                if entry["status"] in ["failed", "error"]:
+                    print(f"  - {entry['form_name']}: {entry.get('error', 'Unknown error')}")
+
+
+def get_available_templates() -> List[Dict[str, str]]:
+    """Return a list of available template files for use in document generation."""
     forms_dir = Path("templates/family_law_forms")
     if not forms_dir.exists():
         return []
-    
-    templates = []
-    for template_file in forms_dir.glob("*.doc*"):
-        templates.append({
-            "name": template_file.stem,
-            "path": str(template_file),
-            "type": "official_wa_court_form"
-        })
-    
+    templates: List[Dict[str, str]] = []
+    for template_file in forms_dir.rglob("*.doc*"):
+        templates.append(
+            {
+                "name": template_file.stem,
+                "path": str(template_file),
+                "type": "official_wa_court_form",
+            }
+        )
     return templates
 
+
+def main():
+    print("Enhanced Washington State Family Law Forms Downloader")
+    print("=" * 60)
+    downloader = WashingtonFormsDownloader()
+    stats = downloader.download_all_forms()
+    downloader.create_snohomish_county_templates()
+    downloader.save_download_log()
+    downloader.generate_summary_report(stats)
+    print("\nForms download and template creation completed!")
+    print(f"Forms are organized in: {downloader.base_dir}")
+
+
 if __name__ == "__main__":
-    download_family_law_forms()
+    main()

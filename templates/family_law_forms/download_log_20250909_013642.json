@@ -1,0 +1,232 @@
+{
+  "download_session": {
+    "timestamp": "2025-09-09T01:36:42.480530",
+    "total_downloads": 28,
+    "base_directory": "/home/runner/work/candi-court/candi-court/templates/family_law_forms"
+  },
+  "downloads": [
+    {
+      "form_name": "FL UCCJEA 801",
+      "filename": "FL_UCCJEA_801.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_801.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef939bba10>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:28.796515"
+    },
+    {
+      "form_name": "FL UCCJEA 802",
+      "filename": "FL_UCCJEA_802.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_802.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b6a20>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:29.300920"
+    },
+    {
+      "form_name": "FL UCCJEA 803",
+      "filename": "FL_UCCJEA_803.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_803.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b5e20>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:29.804953"
+    },
+    {
+      "form_name": "FL UCCJEA 804",
+      "filename": "FL_UCCJEA_804.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_804.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b6d80>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:30.309015"
+    },
+    {
+      "form_name": "FL UCCJEA 805",
+      "filename": "FL_UCCJEA_805.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_805.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7080>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:30.812719"
+    },
+    {
+      "form_name": "FL UCCJEA 806",
+      "filename": "FL_UCCJEA_806.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_806.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7380>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:31.316710"
+    },
+    {
+      "form_name": "FL UCCJEA 811",
+      "filename": "FL_UCCJEA_811.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_811.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7680>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:31.825122"
+    },
+    {
+      "form_name": "FL UCCJEA 812",
+      "filename": "FL_UCCJEA_812.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_812.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7b30>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:32.329163"
+    },
+    {
+      "form_name": "FL UCCJEA 815",
+      "filename": "FL_UCCJEA_815.doc",
+      "category": "commitment_protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_UCCJEA_815.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7920>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:32.833374"
+    },
+    {
+      "form_name": "FL Dissolve 501",
+      "filename": "FL_Dissolve_501.doc",
+      "category": "dissolution_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_Dissolve_501.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ec050>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:33.337759"
+    },
+    {
+      "form_name": "FL Dissolve 502",
+      "filename": "FL_Dissolve_502.doc",
+      "category": "dissolution_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_Dissolve_502.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ec2c0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:33.841040"
+    },
+    {
+      "form_name": "FL Dissolve 503",
+      "filename": "FL_Dissolve_503.doc",
+      "category": "dissolution_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_Dissolve_503.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7f50>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:34.345457"
+    },
+    {
+      "form_name": "FL Divorcing 101",
+      "filename": "FL_Divorcing_101.doc",
+      "category": "dissolution_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_Divorcing_101.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7e30>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:34.849475"
+    },
+    {
+      "form_name": "FL Divorcing 111",
+      "filename": "FL_Divorcing_111.doc",
+      "category": "dissolution_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_Divorcing_111.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b77d0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:35.359276"
+    },
+    {
+      "form_name": "FL Divorcing 121",
+      "filename": "FL_Divorcing_121.doc",
+      "category": "dissolution_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_Divorcing_121.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b71a0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:35.863319"
+    },
+    {
+      "form_name": "FL All Family 160",
+      "filename": "FL_All_Family_160.doc",
+      "category": "protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_160.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b70b0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:36.367077"
+    },
+    {
+      "form_name": "FL All Family 161",
+      "filename": "FL_All_Family_161.doc",
+      "category": "protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_161.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ec500>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:36.870336"
+    },
+    {
+      "form_name": "FL All Family 162",
+      "filename": "FL_All_Family_162.doc",
+      "category": "protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_162.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ec110>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:37.374330"
+    },
+    {
+      "form_name": "FL All Family 166",
+      "filename": "FL_All_Family_166.doc",
+      "category": "protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_166.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ec9e0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:37.877695"
+    },
+    {
+      "form_name": "FL All Family 167",
+      "filename": "FL_All_Family_167.doc",
+      "category": "protection_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_167.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ecda0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:38.381289"
+    },
+    {
+      "form_name": "FL All Family 166",
+      "filename": "FL_All_Family_166_Order_to_Go_to_Court_for_Contempt_Hrg.doc",
+      "category": "contempt_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_166_Order_to_Go_to_Court_for_Contempt_Hrg.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ed070>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:38.888050"
+    },
+    {
+      "form_name": "FL All Family 167",
+      "filename": "FL_All_Family_167_Contempt_Hrg_Order.doc",
+      "category": "contempt_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_167_Contempt_Hrg_Order.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934ed4f0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:39.392221"
+    },
+    {
+      "form_name": "FL All Family 101",
+      "filename": "FL_All_Family_101_Proof_of_Personal_Service.doc",
+      "category": "service_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_101_Proof_of_Personal_Service.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7110>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:39.895894"
+    },
+    {
+      "form_name": "FL All Family 102",
+      "filename": "FL_All_Family_102_Return_of_Service.doc",
+      "category": "service_forms",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_102_Return_of_Service.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b6e10>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:40.399432"
+    },
+    {
+      "form_name": "FL All Family 135",
+      "filename": "FL_All_Family_135.doc",
+      "category": "motions_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_135.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b71d0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:40.903428"
+    },
+    {
+      "form_name": "FL All Family 140",
+      "filename": "FL_All_Family_140.doc",
+      "category": "motions_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_140.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b74a0>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:41.406896"
+    },
+    {
+      "form_name": "FL All Family 145",
+      "filename": "FL_All_Family_145.doc",
+      "category": "motions_orders",
+      "status": "error",
+      "error": "HTTPSConnectionPool(host='www.courts.wa.gov', port=443): Max retries exceeded with url: /forms/docs/FL_All_Family_145.doc (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7fef934b7920>: Failed to resolve 'www.courts.wa.gov' ([Errno -5] No address associated with hostname)\"))",
+      "timestamp": "2025-09-09T01:36:41.910048"
+    },
+    {
+      "form_name": "Snohomish County Motion Template",
+      "local_path": "/home/runner/work/candi-court/candi-court/templates/family_law_forms/snohomish_county/snohomish_motion_template.docx",
+      "category": "snohomish_county",
+      "status": "created",
+      "timestamp": "2025-09-09T01:36:42.437674"
+    }
+  ]
+}

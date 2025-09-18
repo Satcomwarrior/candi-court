@@ -1,0 +1,22 @@
+{
+  "weights": {
+    "clarity": 0.25,
+    "specificity": 0.20,
+    "evidence": 0.20,
+    "tone": 0.15,
+    "legal_merit": 0.20
+  },
+  "thresholds": {
+    "very_unreasonable": 1.5,
+    "unreasonable": 2.5,
+    "neutral": 3.5,
+    "reasonable": 4.5
+  },
+  "analysis_settings": {
+    "min_text_length": 10,
+    "max_sentence_length_for_clarity": 30,
+    "min_sentence_length_for_clarity": 15,
+    "aggressive_language_penalty": 0.4,
+    "professional_language_bonus": 0.2
+  }
+}
