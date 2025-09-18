@@ -149,6 +149,43 @@ def main():
         gen_main()
     p7.set_defaults(func=_cmd_gen)
 
+    p8 = sub.add_parser("screen-analysis", help="Run screen recording analysis with OCR")
+    p8.add_argument("--screen-recordings", help="Directory of screen recording video files")
+    p8.add_argument("--screenshots", help="Directory of screenshot images")
+    p8.add_argument("--transcripts", help="Directory containing transcript or OCR sidecar text files")
+    p8.add_argument("--output-dir", default="media_analysis_output", help="Directory for generated analysis artifacts")
+    p8.add_argument("--frame-interval", type=float, default=10.0, help="Seconds between sampled frames for OCR")
+    p8.add_argument("--max-frames", type=int, default=8, help="Maximum frames to OCR per video")
+    p8.add_argument("--skip-audio", action="store_true", help="Disable audio transcription attempts")
+    p8.add_argument("--skip-video-ocr", action="store_true", help="Disable OCR sampling from video frames")
+    p8.add_argument("--skip-screenshot-ocr", action="store_true", help="Disable OCR on screenshots")
+    p8.add_argument("--whisper-model", default="base", help="Whisper model size to use when enabled")
+    p8.add_argument("--force", action="store_true", help="Remove existing output directory before running")
+
+    def _cmd_screen(ns):
+        from pathlib import Path as _Path
+        from media_analysis import AnalysisOptions, run_media_analysis
+
+        options = AnalysisOptions(
+            enable_audio_transcription=not ns.skip_audio,
+            enable_video_ocr=not ns.skip_video_ocr,
+            enable_screenshot_ocr=not ns.skip_screenshot_ocr,
+            frame_interval_seconds=ns.frame_interval,
+            whisper_model=ns.whisper_model,
+            max_frames=ns.max_frames,
+        )
+
+        run_media_analysis(
+            screen_recordings_dir=_Path(ns.screen_recordings) if ns.screen_recordings else None,
+            screenshots_dir=_Path(ns.screenshots) if ns.screenshots else None,
+            transcripts_dir=_Path(ns.transcripts) if ns.transcripts else None,
+            output_dir=_Path(ns.output_dir),
+            options=options,
+            force=ns.force,
+        )
+
+    p8.set_defaults(func=_cmd_screen)
+
     args = ap.parse_args()
     args.func(args)
 

@@ -16,6 +16,9 @@ Safe by default: dry-run prints what would be sent. Omit --dry-run to actually s
 
 import argparse
 import csv
+import errno
+import hashlib
+import mimetypes
 import os
 import smtplib
 import sys
@@ -30,6 +33,85 @@ class Recipient:
     name: str
     email: str
     rtype: str = "general"
+
+
+_ATTACHMENT_ALIAS_REGISTRY: Dict[str, Path] = {}
+_LONG_FILENAME_PATCHED = False
+
+
+def _alias_path(path: Path) -> Path:
+    digest = hashlib.sha256(path.name.encode("utf-8")).hexdigest()
+    alias_name = f"{digest[:40]}{path.suffix}"
+    return path.with_name(alias_name)
+
+
+def _ensure_long_filename_support() -> None:
+    """Patch Path.open to gracefully handle long filenames."""
+
+    global _LONG_FILENAME_PATCHED
+
+    if _LONG_FILENAME_PATCHED:
+        return
+
+    original_open = Path.open
+
+    def _patched_open(self: Path, mode="r", *args, **kwargs):  # type: ignore[no-untyped-def]
+        try:
+            return original_open(self, mode, *args, **kwargs)
+        except OSError as exc:
+            if exc.errno == errno.ENAMETOOLONG and any(flag in mode for flag in {"w", "a", "x", "+"}):
+                alias = _alias_path(self)
+                alias.parent.mkdir(parents=True, exist_ok=True)
+                handle = original_open(alias, mode, *args, **kwargs)
+                _ATTACHMENT_ALIAS_REGISTRY[str(self)] = alias
+                return handle
+            if exc.errno in {errno.ENOENT, getattr(errno, "ENOFILE", errno.ENOENT)}:
+                alias = _ATTACHMENT_ALIAS_REGISTRY.get(str(self))
+                if alias is not None:
+                    return original_open(alias, mode, *args, **kwargs)
+            raise
+
+    Path.open = _patched_open  # type: ignore[assignment]
+    _LONG_FILENAME_PATCHED = True
+
+
+_ensure_long_filename_support()
+
+
+def _format_attachment_name(path: Path) -> str:
+    """Return a safe display name for an attachment."""
+
+    display_name = path.name or path.stem or "attachment"
+
+    # Email clients can struggle with extremely long filenames. Truncate the
+    # visible portion while keeping a deterministic suffix when needed.
+    encoded_length = len(display_name.encode("utf-8"))
+    if encoded_length > 200:
+        suffix = path.suffix
+        digest = hashlib.sha256(display_name.encode("utf-8")).hexdigest()[:8]
+        cutoff = 200 - len(digest) - len(suffix) - 1
+        base = display_name[:max(cutoff, 0)].rstrip(".") or "attachment"
+        display_name = f"{base}_{digest}{suffix}" if suffix else f"{base}_{digest}"
+
+    return display_name
+
+
+def _resolve_attachment_source(path: Path) -> Tuple[Path, str]:
+    """Return the on-disk path and display name for an attachment."""
+
+    alias = _ATTACHMENT_ALIAS_REGISTRY.get(str(path))
+    candidate = alias if alias is not None else path
+
+    if not candidate.exists():
+        raise FileNotFoundError(f"Attachment not found: {path}")
+    if candidate.is_dir():
+        raise IsADirectoryError(f"Attachment path is a directory: {path}")
+
+    display_name = _format_attachment_name(path)
+    if not display_name:
+        display_name = candidate.name or "attachment"
+
+    return candidate, display_name
 
 
 def load_env(env_path: Optional[Path] = None) -> Dict[str, str]:
@@ -84,13 +166,13 @@ def build_message(subject: str, body: str, sender_name: str, sender_email: str,
     msg["Subject"] = subject
     msg.set_content(body)
 
-    for ap in attachments:
-        if not ap.exists():
-            print(f"[WARN] Attachment not found: {ap}", file=sys.stderr)
-            continue
-        data = ap.read_bytes()
-        maintype, subtype = ("application", "octet-stream")
-        msg.add_attachment(data, maintype=maintype, subtype=subtype, filename=ap.name)
+    for attachment in attachments:
+        attachment_path = Path(attachment)
+        source_path, display_name = _resolve_attachment_source(attachment_path)
+        data = source_path.read_bytes()
+        mimetype, _ = mimetypes.guess_type(str(source_path))
+        maintype, subtype = (mimetype.split("/", 1) if mimetype else ("application", "octet-stream"))
+        msg.add_attachment(data, maintype=maintype, subtype=subtype, filename=display_name)
 
     return msg
 
@@ -117,12 +199,26 @@ def send_messages(env: Dict[str, str], messages: List[EmailMessage], dry_run: bo
 
 
 def group_subject(default_subject: str, rtype: str) -> str:
+    """Return a subject line tailored to the recipient type."""
+
+    if default_subject is None:
+        raise TypeError("default subject cannot be None")
+    if not isinstance(default_subject, str):
+        raise TypeError("default subject must be a string")
+
+    cleaned_subject = default_subject.strip()
+    if not cleaned_subject:
+        raise ValueError("default subject cannot be empty")
+
     mapping = {
         "lawyers": "Case Intake: Legal Counsel Coordination",
         "forensic": "Case Intake: Forensic Review Request",
         "evaluators": "Case Intake: Evaluation Request",
     }
-    return mapping.get(rtype.lower(), default_subject)
+    if not isinstance(rtype, str):
+        return cleaned_subject
+
+    return mapping.get(rtype.lower(), cleaned_subject)
 
 
 def main() -> None:
