@@ -1,8 +1,12 @@
-# FULL AUTOMATED LEGAL CASE WORKFLOW SCRIPT
-# Author: William Miller
-# Date: 09/07/2025
-# Enhanced with NLP analysis and official template integration
+"""
+FULL AUTOMATED LEGAL CASE WORKFLOW SCRIPT
 
+Author: William Miller
+Date: 09/07/2025
+Version: 1.0
+
+Enhanced with NLP analysis and official template integration.
+"""
 import os
 import json
 import spacy
