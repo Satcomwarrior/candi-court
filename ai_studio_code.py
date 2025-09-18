@@ -34,16 +34,30 @@ def call_studio_ai(prompt, files=None, model_name=None):
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable is required")
     
-    client = genai.Client(
-        api_key=api_key,
-        # The client handles the endpoint URL internally
-    )
+    genai.configure(api_key=api_key)
     
     # Use provided model or default
-    model = model_name or STUDIO_AI_MODEL
+    model_to_use = model_name or STUDIO_AI_MODEL
     
     # Prepare content parts
-    parts = [types.Part.from_text(text=prompt)]
+    content = [prompt]
+    if files:
+        for file_path in files:
+            # This uploads the file and makes it available for the model
+            uploaded_file = genai.upload_file(path=file_path)
+            content.append(uploaded_file)
+
+    # Create the generative model instance
+    model = genai.GenerativeModel(model_name=model_to_use)
+
+    # Generate content
+    response = model.generate_content(content)
+
+    try:
+        return response.text
+    except ValueError:
+        # If the response has no text (e.g. blocked), return response parts.
+        return str(response.parts)
     
     # Add file parts if provided
     if files:
