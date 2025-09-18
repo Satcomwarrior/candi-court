@@ -93,7 +93,12 @@ def test_legal_workflow_integration():
     print("\nTesting legal workflow integration...")
     
     try:
-        from legal_case_workflow import analyze_communications_via_ai, summarize_case_facts, ai_studio_extract_metadata
+        from legal_case_workflow import (
+            analyze_communications_via_ai,
+            summarize_case_facts,
+            ai_studio_extract_metadata,
+            CommunicationAnalysisResult,
+        )
         
         # Check if API key is available for real testing
         api_key = os.environ.get("GEMINI_API_KEY")
@@ -104,7 +109,13 @@ def test_legal_workflow_integration():
         # Test communications analysis
         test_comm = "You never listen to me. I'm tired of this relationship. Maybe I should just leave."
         result = analyze_communications_via_ai(test_comm)
-        print(f"✅ Communications analysis: {result[:100]}...")
+        if isinstance(result, CommunicationAnalysisResult):
+            preview = str(result)[:100]
+        elif isinstance(result, dict):
+            preview = str(result.get("combined_summary", ""))[:100]
+        else:
+            preview = str(result)[:100]
+        print(f"✅ Communications analysis: {preview}...")
         
         # Test case facts summarization
         test_facts = "William Miller and Candi Brightwell were in a relationship from 2018-2025. Property disputes arose involving $580,000."

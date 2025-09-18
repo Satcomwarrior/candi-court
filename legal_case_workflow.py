@@ -9,6 +9,7 @@ Enhanced with NLP analysis and official template integration.
 """
 import os
 import json
+from dataclasses import dataclass
 import spacy
 from textblob import TextBlob
 from pathlib import Path
@@ -47,6 +48,43 @@ YOUR_EMAIL = "wmiller@muddmonkiesinc.com"
 # openai.api_key = "your_openai_api_key"
 
 # === ENHANCED NLP ANALYSIS FUNCTIONS ===
+
+
+@dataclass
+class CommunicationAnalysisResult:
+    """Container for AI and NLP communication analysis results."""
+
+    ai_analysis: str
+    nlp_analysis: dict
+    combined_summary: str
+
+    def __post_init__(self):
+        # Normalize default values to keep downstream code simple
+        self.ai_analysis = self.ai_analysis or ""
+        self.nlp_analysis = self.nlp_analysis or {}
+        self.combined_summary = self.combined_summary or ""
+
+    # Provide string-like behaviour so existing code that expects a string
+    # (for preview printing, slicing, etc.) keeps working.
+    def __str__(self):
+        return self.combined_summary
+
+    def __repr__(self):
+        return f"CommunicationAnalysisResult(summary={self.combined_summary!r})"
+
+    def __len__(self):
+        return len(self.combined_summary)
+
+    def __getitem__(self, item):
+        return self.combined_summary[item]
+
+    def to_dict(self):
+        """Return a dictionary representation for compatibility."""
+        return {
+            "ai_analysis": self.ai_analysis,
+            "nlp_analysis": self.nlp_analysis,
+            "combined_summary": self.combined_summary,
+        }
 
 def analyze_communication_patterns_nlp(text):
     """
@@ -338,6 +376,8 @@ def analyze_communications_via_ai(text):
     """
     Enhanced communication analysis using both AI and NLP techniques.
     Combines Google AI Studio analysis with local spaCy/TextBlob processing.
+    Returns a CommunicationAnalysisResult which behaves like a string summary
+    but also exposes detailed NLP findings.
     """
     print("[AI] Starting enhanced communication analysis...")
     
@@ -374,25 +414,22 @@ Consider the technical NLP analysis alongside contextual legal interpretation.""
         # Use the call_studio_ai function for real AI analysis
         from ai_studio_code import call_studio_ai
         ai_response = call_studio_ai(prompt)
-        
-        # Combine AI and NLP results
-        combined_analysis = {
-            "ai_analysis": ai_response,
-            "nlp_analysis": nlp_analysis,
-            "combined_summary": f"AI Analysis: {ai_response}\n\nNLP Technical Analysis: {nlp_summary}"
-        }
-        
-        return combined_analysis
-        
+
+        return CommunicationAnalysisResult(
+            ai_analysis=ai_response,
+            nlp_analysis=nlp_analysis,
+            combined_summary=f"AI Analysis: {ai_response}\n\nNLP Technical Analysis: {nlp_summary}"
+        )
+
     except Exception as e:
         print(f"[AI] Error calling Google AI Studio: {e}")
         # Enhanced fallback using NLP analysis
         fallback_analysis = generate_enhanced_fallback_analysis(nlp_analysis, text)
-        return {
-            "ai_analysis": fallback_analysis,
-            "nlp_analysis": nlp_analysis,
-            "combined_summary": f"Enhanced Analysis: {fallback_analysis}\n\nNLP Technical Analysis: {nlp_summary}"
-        }
+        return CommunicationAnalysisResult(
+            ai_analysis=fallback_analysis,
+            nlp_analysis=nlp_analysis,
+            combined_summary=f"Enhanced Analysis: {fallback_analysis}\n\nNLP Technical Analysis: {nlp_summary}"
+        )
 
 def generate_enhanced_fallback_analysis(nlp_analysis, text):
     """
@@ -695,33 +732,42 @@ def main():
     # 3) Enhanced Communications Analysis with NLP
     print("\n=== ENHANCED COMMUNICATIONS ANALYSIS ===")
     comms_analysis = analyze_communications_via_ai(communications_text)
-    
-    if isinstance(comms_analysis, dict):
+
+    if isinstance(comms_analysis, CommunicationAnalysisResult):
+        print("[COMMUNICATIONS ANALYSIS - AI]")
+        print(comms_analysis.ai_analysis or "No AI analysis available")
+
+        print("\n[COMMUNICATIONS ANALYSIS - NLP TECHNICAL]")
+        nlp_analysis = comms_analysis.nlp_analysis
+
+    elif isinstance(comms_analysis, dict):
         print("[COMMUNICATIONS ANALYSIS - AI]")
         print(comms_analysis.get("ai_analysis", "No AI analysis available"))
-        
+
         print("\n[COMMUNICATIONS ANALYSIS - NLP TECHNICAL]")
         nlp_analysis = comms_analysis.get("nlp_analysis", {})
-        
+    else:
+        print("[COMMUNICATIONS ANALYSIS]\n", comms_analysis)
+        nlp_analysis = {}
+
+    if nlp_analysis:
         # Display sentiment analysis
         sentiment = nlp_analysis.get("sentiment", {})
         print(f"Sentiment: {sentiment.get('interpretation', 'Unknown')}")
-        
+
         # Display coercive patterns
         coercive_patterns = nlp_analysis.get("coercive_patterns", [])
         if coercive_patterns:
             print("Coercive Control Patterns Detected:")
             for pattern in coercive_patterns:
                 print(f"  - {pattern['category'].title()}: {pattern['severity']} instances")
-        
+
         # Display psychological indicators
         psych_indicators = nlp_analysis.get("psychological_indicators", [])
         if psych_indicators:
             print("Psychological Manipulation Indicators:")
             for indicator in psych_indicators:
                 print(f"  - {indicator['type'].replace('_', ' ').title()}: {indicator['count']} occurrences")
-    else:
-        print("[COMMUNICATIONS ANALYSIS]\n", comms_analysis)
 
     # 4) Document Structure Analysis
     print("\n=== DOCUMENT STRUCTURE ANALYSIS ===")
