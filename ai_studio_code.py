@@ -1,17 +1,96 @@
 import base64
+import binascii
+import io
 import mimetypes
 import os
 import re
-import struct
+import wave
 from google import genai
 from google.genai import types
 
 
 def save_binary_file(file_name, data):
-    f = open(file_name, "wb")
-    f.write(data)
-    f.close()
-    print(f"File saved to to: {file_name}")
+    with open(file_name, "wb") as f:
+        f.write(data)
+    print(f"File saved to: {file_name}")
+
+
+def _sanitize_file_stem(file_stem):
+    """Sanitize file stem for safe filesystem usage."""
+    if not file_stem:
+        return "ai_output"
+    sanitized = re.sub(r"[^A-Za-z0-9._-]", "_", file_stem)
+    sanitized = sanitized.strip("._")
+    return sanitized or "ai_output"
+
+
+def _extract_int_from_mime(mime_type, key, default):
+    if not mime_type:
+        return default
+    match = re.search(rf"{key}=([0-9]+)", mime_type, flags=re.IGNORECASE)
+    if match:
+        try:
+            return int(match.group(1))
+        except ValueError:
+            return default
+    return default
+
+
+def _normalize_mime_type(mime_type):
+    if not mime_type:
+        return ""
+    return mime_type.split(";")[0].strip().lower()
+
+
+def _guess_extension_from_mime(mime_type):
+    if not mime_type:
+        return ""
+    normalized = _normalize_mime_type(mime_type)
+    if normalized in {"audio/l16", "audio/pcm", "audio/x-raw"}:
+        return ".wav"
+
+    extension = mimetypes.guess_extension(normalized)
+    if extension == ".jpe":
+        return ".jpg"
+    if extension:
+        return extension
+
+    if normalized.startswith("audio/"):
+        if "mpeg" in normalized:
+            return ".mp3"
+        if "wav" in normalized:
+            return ".wav"
+    return ""
+
+
+def _convert_pcm_to_wav(raw_audio, sample_rate, channels):
+    with io.BytesIO() as buffer:
+        with wave.open(buffer, "wb") as wav_file:
+            wav_file.setnchannels(channels)
+            wav_file.setsampwidth(2)  # 16-bit audio
+            wav_file.setframerate(sample_rate)
+            wav_file.writeframes(raw_audio)
+        return buffer.getvalue()
+
+
+def _is_pcm_audio(mime_type):
+    normalized = _normalize_mime_type(mime_type)
+    return normalized in {"audio/l16", "audio/pcm", "audio/x-raw"}
+
+
+def _ensure_bytes(data):
+    if isinstance(data, bytes):
+        return data
+    if isinstance(data, bytearray):
+        return bytes(data)
+    if isinstance(data, memoryview):
+        return data.tobytes()
+    if isinstance(data, str):
+        try:
+            return base64.b64decode(data)
+        except (binascii.Error, ValueError):
+            return data.encode("utf-8")
+    return bytes(data)
 
 
 # Configuration for Google AI Studio
@@ -241,14 +320,60 @@ def generate():
                 or chunk.candidates[0].content.parts is None
             ):
                 continue
-            if chunk.candidates[0].content.parts[0].inline_data and chunk.candidates[0].content.parts[0].inline_data.data:
-                file_name = f"ENTER_FILE_NAME_{file_index}"
-                file_index += 1
-                save_binary_file(file_name, chunk.candidates[0].content.parts[0].inline_data.data)
-                print(f"[INFO] Generated file: {file_name}")
-            else:
-                print(chunk.candidates[0].content.parts[0].text)
-                
+
+            for part in chunk.candidates[0].content.parts:
+                inline_data = getattr(part, "inline_data", None)
+                if inline_data and getattr(inline_data, "data", None):
+                    output_index = file_index
+                    file_index += 1
+
+                    raw_bytes = _ensure_bytes(inline_data.data)
+                    mime_type = getattr(inline_data, "mime_type", None)
+                    sample_rate = _extract_int_from_mime(mime_type, "rate", 16000)
+                    channels = _extract_int_from_mime(mime_type, "channels", 1)
+
+                    original_name = getattr(inline_data, "file_name", None)
+                    extension = ""
+                    if original_name:
+                        original_name = os.path.basename(original_name)
+                        raw_base, name_extension = os.path.splitext(original_name)
+                        if raw_base.strip():
+                            base_name = _sanitize_file_stem(raw_base)
+                        else:
+                            base_name = _sanitize_file_stem(f"ai_output_{output_index}")
+                        extension = name_extension
+                    else:
+                        base_name = _sanitize_file_stem(f"ENTER_FILE_NAME_{output_index}")
+
+                    if _is_pcm_audio(mime_type):
+                        if sample_rate <= 0:
+                            sample_rate = 16000
+                        if channels <= 0:
+                            channels = 1
+                        raw_bytes = _convert_pcm_to_wav(
+                            raw_bytes,
+                            sample_rate=sample_rate,
+                            channels=channels,
+                        )
+                        extension = ".wav"
+                        mime_type_display = "audio/wav"
+                    else:
+                        if not extension:
+                            extension = _guess_extension_from_mime(mime_type)
+                        if not extension:
+                            extension = ".bin"
+                        mime_type_display = mime_type or "unknown"
+
+                    if not base_name:
+                        base_name = _sanitize_file_stem(f"ai_output_{output_index}")
+
+                    file_name = f"{base_name}{extension}"
+                    save_binary_file(file_name, raw_bytes)
+                    print(f"[INFO] Generated file: {file_name} (mime_type={mime_type_display})")
+
+                elif getattr(part, "text", None):
+                    print(part.text)
+
     except Exception as e:
         print(f"[ERROR] Content generation failed: {e}")
         return f"Content generation failed: {e}"
